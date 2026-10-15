@@ -1,0 +1,82 @@
+[
+ {
+  "file": "01.png",
+  "title": "Choose a demo role",
+  "caption": "The prototype opens on a role picker. Each role sees its own pages and workflows."
+ },
+ {
+  "file": "02.png",
+  "title": "HR Administrator overview",
+  "caption": "The HR Administrator lands on an overview of the people records and the workflows they own."
+ },
+ {
+  "file": "03.png",
+  "title": "Establish an employee record",
+  "caption": "Workflow 1: the administrator enters a new employee’s details."
+ },
+ {
+  "file": "04.png",
+  "title": "Review before saving",
+  "caption": "Every workflow shows a review step, so nothing is saved until it is confirmed."
+ },
+ {
+  "file": "05.png",
+  "title": "Employee record",
+  "caption": "The new record opens with its details, reviews and project assignments."
+ },
+ {
+  "file": "06.png",
+  "title": "Correct employee details",
+  "caption": "Workflow 2: the administrator corrects the job title."
+ },
+ {
+  "file": "07.png",
+  "title": "Employee list",
+  "caption": "All employees, including the one just added."
+ },
+ {
+  "file": "08.png",
+  "title": "Record a performance discussion",
+  "caption": "Workflow 3: switching to the People Manager role to record a performance discussion."
+ },
+ {
+  "file": "09.png",
+  "title": "Performance discussion",
+  "caption": "The saved discussion, linked to the employee and the reviewer."
+ },
+ {
+  "file": "10.png",
+  "title": "Prepare a client project",
+  "caption": "Workflow 4: the Project Coordinator sets up a project for a client."
+ },
+ {
+  "file": "11.png",
+  "title": "Assign an employee",
+  "caption": "Workflow 5: assigning the new employee to the project at 60% allocation."
+ },
+ {
+  "file": "12.png",
+  "title": "Project with its team",
+  "caption": "The project now shows its assignment."
+ },
+ {
+  "file": "13.png",
+  "title": "A business rule refuses",
+  "caption": "Allocating someone past 100% is refused, with the reason, and the entered details are kept."
+ },
+ {
+  "file": "14.png",
+  "title": "Role-based access",
+  "caption": "A Project Coordinator who opens a People Manager page is turned away."
+ },
+ {
+  "file": "15.png",
+  "title": "Client record",
+  "caption": "A client with its projects."
+ },
+ {
+  "file": "16.png",
+  "title": "On a phone",
+  "caption": "The same app at phone width."
+ }
+]

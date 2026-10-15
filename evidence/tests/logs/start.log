@@ -1,4 +1,4 @@
-HR-Prototype start 2026-10-15T16:11:36.907Z
+HR-Prototype start 2026-10-15T20:17:18.992Z
 Creating database if absent, applying migrations and loading fictional seed.
 {"application":"HR-Prototype","status":"healthy","dependencies":{"database":{"status":"healthy","name":"hrproto"}}}
 Ready: http://127.0.0.1:5173/hrproto/
