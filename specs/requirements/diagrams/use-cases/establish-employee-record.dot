@@ -1,0 +1,13 @@
+digraph behavior {
+ rankdir=TB;
+ node [shape=box, style="rounded", fontname="Arial"];
+ s0 [label="HR supplies the employee number and employment details."];
+ s1 [label="System reads employees to detect an existing record."];
+ s0 -> s1;
+ s2 [label="If no record exists, HR confirms the details and the system\ncreates Employee."];
+ s1 -> s2;
+ s3 [label="HR sees the employee ready for reviews and assignments."];
+ s2 -> s3;
+ alternatives [label="An existing employee number returns the existing record without\nduplicate creation. Invalid employment dates are refused; HR\ncorrects and retries. Cancellation before confirmation makes no\nchange.",shape=note];
+ s0 -> alternatives [style=dashed,label="Alternative outcomes"];
+}

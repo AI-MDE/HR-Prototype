@@ -3,3 +3,11 @@
 
 # This machine's configuration; .env.example is committed
 .env
+
+.env
+app/node_modules/
+app/dist/
+app/frontend/dist/
+app/logs/
+app/test-results/
+app/playwright-report/

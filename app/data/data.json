@@ -1,0 +1,128 @@
+{
+  "type": "data",
+  "records": {
+    "Employee": [
+      {
+        "id": "00000000-0000-4000-8000-000000000001",
+        "employeeNumber": "EMP-001",
+        "fullName": "Maya Chen",
+        "email": "maya.chen@example.test",
+        "jobTitle": "Product Designer",
+        "startDate": "2025-01-06"
+      },
+      {
+        "id": "00000000-0000-4000-8000-000000000002",
+        "employeeNumber": "EMP-002",
+        "fullName": "Alex Morgan",
+        "email": "alex.morgan@example.test",
+        "jobTitle": "People Lead",
+        "startDate": "2025-01-06"
+      },
+      {
+        "id": "00000000-0000-4000-8000-000000000003",
+        "employeeNumber": "EMP-003",
+        "fullName": "Jordan Ellis",
+        "email": "jordan.ellis@example.test",
+        "jobTitle": "Software Engineer",
+        "startDate": "2025-01-06"
+      },
+      {
+        "id": "00000000-0000-4000-8000-000000000004",
+        "employeeNumber": "EMP-004",
+        "fullName": "Priya Shah",
+        "email": "priya.shah@example.test",
+        "jobTitle": "Delivery Consultant",
+        "startDate": "2025-01-06"
+      }
+    ],
+    "PerformanceReview": [
+      {
+        "id": "15afd5bd-8211-4dfd-af93-0e7faae27af6",
+        "periodStart": "2026-10-15",
+        "periodEnd": "2026-10-12",
+        "reviewDate": "2026-10-09",
+        "summary": "OK",
+        "strengths": "11",
+        "developmentActions": "11",
+        "employee": "00000000-0000-4000-8000-000000000001"
+      }
+    ],
+    "Client": [
+      {
+        "id": "00000000-0000-4000-8000-000000000011",
+        "clientCode": "NORTH",
+        "name": "Northstar Studio"
+      },
+      {
+        "id": "00000000-0000-4000-8000-000000000012",
+        "clientCode": "EVER",
+        "name": "Evergreen Works"
+      }
+    ],
+    "ProjectAssignment": [
+      {
+        "id": "00000000-0000-4000-8000-000000000041",
+        "responsibility": "Experience design",
+        "startDate": "2026-07-01",
+        "endDate": "2026-12-31",
+        "allocationPercent": 60,
+        "project": "00000000-0000-4000-8000-000000000021",
+        "employee": "00000000-0000-4000-8000-000000000001"
+      },
+      {
+        "id": "00000000-0000-4000-8000-000000000042",
+        "responsibility": "Design advisory",
+        "startDate": "2026-07-01",
+        "endDate": "2026-12-31",
+        "allocationPercent": 40,
+        "project": "00000000-0000-4000-8000-000000000022",
+        "employee": "00000000-0000-4000-8000-000000000001"
+      },
+      {
+        "id": "00000000-0000-4000-8000-000000000043",
+        "responsibility": "Application engineering",
+        "startDate": "2026-07-01",
+        "endDate": "2026-12-31",
+        "allocationPercent": 75,
+        "project": "00000000-0000-4000-8000-000000000022",
+        "employee": "00000000-0000-4000-8000-000000000003"
+      },
+      {
+        "id": "542b140d-575d-4395-bdf9-b4835375d1fb",
+        "responsibility": "test",
+        "startDate": "2026-10-15",
+        "endDate": "2026-12-15",
+        "allocationPercent": "100",
+        "project": "00000000-0000-4000-8000-000000000022",
+        "employee": "00000000-0000-4000-8000-000000000003"
+      }
+    ],
+    "Project": [
+      {
+        "id": "00000000-0000-4000-8000-000000000021",
+        "projectCode": "NS-001",
+        "name": "Customer experience refresh",
+        "description": "Research and redesign the customer onboarding experience.",
+        "startDate": "2026-01-01",
+        "endDate": "2026-12-31",
+        "client": "00000000-0000-4000-8000-000000000011"
+      },
+      {
+        "id": "00000000-0000-4000-8000-000000000022",
+        "projectCode": "EW-002",
+        "name": "Operations workspace",
+        "description": "Create a shared workspace for the service delivery team.",
+        "startDate": "2026-01-01",
+        "endDate": "2026-12-31",
+        "client": "00000000-0000-4000-8000-000000000012"
+      }
+    ]
+  },
+  "history": {
+    "Employee": {},
+    "PerformanceReview": {},
+    "Client": {},
+    "ProjectAssignment": {},
+    "Project": {}
+  }
+}

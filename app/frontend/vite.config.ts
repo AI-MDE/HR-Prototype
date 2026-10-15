@@ -1,0 +1,3 @@
+import {defineConfig,loadEnv} from 'vite';import react from '@vitejs/plugin-react';import path from 'node:path';import {fileURLToPath} from 'node:url';
+const dir=path.dirname(fileURLToPath(import.meta.url)),root=path.resolve(dir,'../..');
+export default defineConfig(({mode})=>{const e={...loadEnv(mode,root,''),...process.env};if(!e.BASE_PATH||!e.API_BASE)throw new Error('Configure BASE_PATH and API_BASE in project-root .env');return {root:dir,envDir:root,plugins:[react()],base:e.BASE_PATH,define:{'import.meta.env.VITE_API_BASE':JSON.stringify(e.API_BASE)},server:{host:e.HOST,port:Number(e.WEB_PORT),strictPort:true,proxy:{[e.API_BASE]:{target:`http://${e.HOST}:${e.API_PORT}`}}},build:{outDir:'dist'}};});

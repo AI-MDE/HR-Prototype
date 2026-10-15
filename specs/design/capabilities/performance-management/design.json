@@ -1,0 +1,17 @@
+{
+  "type": "capability-design",
+  "capability": "performance-management",
+  "entities": {
+    "PerformanceReview": {
+      "features": {
+        "label": {
+          "attributes": [
+            "periodStart",
+            "periodEnd",
+            "reviewDate"
+          ]
+        }
+      }
+    }
+  }
+}

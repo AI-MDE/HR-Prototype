@@ -1,1 +1,88 @@
-{}
+{
+  "business-requirements": {
+    "*": {
+      "started": "2026-10-15T01:11:14.788646+00:00",
+      "completed": "2026-10-15T01:14:13.998494+00:00"
+    },
+    "feature:business-requirements-entity": {
+      "started": "2026-10-15T19:28:40.739340+00:00",
+      "completed": "2026-10-15T19:29:22.766688+00:00"
+    }
+  },
+  "architecture": {
+    "*": {
+      "leftOut": "Optional formal Target under the Prototype selection approved by mde proceed on 2026-10-14; applicable minimal prototype outputs and runnable baseline are still required."
+    }
+  },
+  "application-design": {
+    "*": {
+      "leftOut": "Optional formal Target under the Prototype selection approved by mde proceed on 2026-10-14; applicable minimal prototype outputs and runnable baseline are still required."
+    }
+  },
+  "api-design": {
+    "*": {
+      "leftOut": "Optional formal Target under the Prototype selection approved by mde proceed on 2026-10-14; applicable minimal prototype outputs and runnable baseline are still required."
+    }
+  },
+  "ui-design": {
+    "*": {
+      "leftOut": "Optional formal Target under the Prototype selection approved by mde proceed on 2026-10-14; applicable minimal prototype outputs and runnable baseline are still required."
+    }
+  },
+  "persistence-design": {
+    "*": {
+      "leftOut": "Optional formal Target under the Prototype selection approved by mde proceed on 2026-10-14; applicable minimal prototype outputs and runnable baseline are still required."
+    }
+  },
+  "api": {
+    "*": {
+      "leftOut": "Optional formal Target under the Prototype selection approved by mde proceed on 2026-10-14; applicable minimal prototype outputs and runnable baseline are still required."
+    }
+  },
+  "persistence": {
+    "*": {
+      "leftOut": "Optional formal Target under the Prototype selection approved by mde proceed on 2026-10-14; applicable minimal prototype outputs and runnable baseline are still required."
+    }
+  },
+  "server": {
+    "*": {
+      "leftOut": "Optional formal Target under the Prototype selection approved by mde proceed on 2026-10-14; applicable minimal prototype outputs and runnable baseline are still required."
+    }
+  },
+  "web-ui": {
+    "*": {
+      "leftOut": "Optional formal Target under the Prototype selection approved by mde proceed on 2026-10-14; applicable minimal prototype outputs and runnable baseline are still required."
+    }
+  },
+  "testing": {
+    "*": {
+      "leftOut": "Optional formal Target under the Prototype selection approved by mde proceed on 2026-10-14; applicable minimal prototype outputs and runnable baseline are still required."
+    }
+  },
+  "evidence": {
+    "*": {
+      "leftOut": "Optional formal Target under the Prototype selection approved by mde proceed on 2026-10-14; applicable minimal prototype outputs and runnable baseline are still required."
+    }
+  },
+  "documentation": {
+    "*": {
+      "leftOut": "Optional formal Target under the Prototype selection approved by mde proceed on 2026-10-14; applicable minimal prototype outputs and runnable baseline are still required."
+    }
+  },
+  "deployment": {
+    "*": {
+      "leftOut": "Optional formal Target under the Prototype selection approved by mde proceed on 2026-10-14; applicable minimal prototype outputs and runnable baseline are still required."
+    }
+  },
+  "dev-setup": {
+    "*": {
+      "leftOut": "Optional formal Target under the Prototype selection approved by mde proceed on 2026-10-14; applicable minimal prototype outputs and runnable baseline are still required."
+    }
+  },
+  "run-app": {
+    "*": {
+      "started": "2026-10-15T01:16:34.331637+00:00",
+      "completed": "2026-10-15T16:13:07.430068+00:00"
+    }
+  }
+}

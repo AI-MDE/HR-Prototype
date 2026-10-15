@@ -1,0 +1,49 @@
+{
+  "name": "hrproto",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "mde:install": "npm ci && playwright install chromium",
+    "mde:build": "node scripts/build.mjs",
+    "mde:start": "node scripts/runtime.mjs start",
+    "mde:stop": "node scripts/runtime.mjs stop",
+    "mde:health": "node scripts/runtime.mjs health",
+    "mde:test": "node scripts/test.mjs",
+    "db:create": "node scripts/database.mjs create",
+    "migrate": "node scripts/database.mjs migrate",
+    "seed": "node scripts/database.mjs seed",
+    "db:reset": "node scripts/database.mjs reset",
+    "dev": "vite --config frontend/vite.config.ts"
+  },
+  "mde": {
+    "url": "http://127.0.0.1:${WEB_PORT}${BASE_PATH}"
+  },
+  "dependencies": {
+    "@carbon/react": "1.118.0",
+    "@nestjs/common": "11.2.7",
+    "@nestjs/core": "11.2.7",
+    "@nestjs/platform-express": "11.2.7",
+    "dotenv": "18.0.8",
+    "express": "5.3.0",
+    "pg": "8.23.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-router-dom": "7.18.4",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "@types/express": "5.0.6",
+    "@types/node": "26.6.5",
+    "@types/pg": "8.23.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "5.2.0",
+    "sass": "1.105.1",
+    "typescript": "7.0.2",
+    "vite": "7.3.7",
+    "vitest": "5.0.5"
+  }
+}

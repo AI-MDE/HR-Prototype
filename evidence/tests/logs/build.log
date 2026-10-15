@@ -1,0 +1,218 @@
+# mde:build
+# command: npm run mde:build
+# cwd: C:\mde\ws\sample\HRProto
+# exit: 0  time: 12.2s  at: 2026-10-15T16:11:26.453Z
+
+
+> hrproto@0.1.0 mde:build
+> npm --prefix app run mde:build
+
+
+> hrproto@0.1.0 mde:build
+> node scripts/build.mjs
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 953 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                                      0.44 kB │ gzip:   0.30 kB
+dist/assets/IBMPlexSans-Regular-Latin3-B7f3PIUA.woff2                7.09 kB
+dist/assets/IBMPlexSans-Light-Latin3-Dzanp4Xn.woff2                  7.21 kB
+dist/assets/IBMPlexSans-SemiBold-Latin3-b1rxH0LD.woff2               7.28 kB
+dist/assets/IBMPlexSans-SemiBoldItalic-Latin3-D2LbChAr.woff2         7.47 kB
+dist/assets/IBMPlexSans-Regular-Pi-CkmElvWW.woff2                    7.50 kB
+dist/assets/IBMPlexSans-LightItalic-Latin3-CMAUmq7-.woff2            7.52 kB
+dist/assets/IBMPlexSans-Italic-Latin3-yFTtv7WN.woff2                 7.58 kB
+dist/assets/IBMPlexSans-Light-Pi-Wq6RJxSB.woff2                      7.62 kB
+dist/assets/IBMPlexSerif-Regular-Pi-BBTsL4wo.woff2                   7.68 kB
+dist/assets/IBMPlexSans-Italic-Pi-COJ9AKmU.woff2                     7.72 kB
+dist/assets/IBMPlexMono-Regular-Latin3-BrX4nofu.woff2                7.73 kB
+dist/assets/IBMPlexMono-Light-Latin3-DeeZ65nR.woff2                  7.81 kB
+dist/assets/IBMPlexSans-SemiBold-Pi-CG8jxtIB.woff2                   7.82 kB
+dist/assets/IBMPlexSerif-Light-Pi-BVPZ9Hg9.woff2                     7.85 kB
+dist/assets/IBMPlexSerif-SemiBold-Pi-0z3z3OYp.woff2                  7.86 kB
+dist/assets/IBMPlexSans-SemiBoldItalic-Pi-BGgNlM4X.woff2             7.96 kB
+dist/assets/IBMPlexMono-SemiBold-Latin3-2Eg7xYje.woff2               8.02 kB
+dist/assets/IBMPlexSans-LightItalic-Pi-D3y-_wTf.woff2                8.04 kB
+dist/assets/IBMPlexSerif-SemiBoldItalic-Pi-Mh_Pacz9.woff2            8.12 kB
+dist/assets/IBMPlexSerif-Italic-Pi-WAzfMnpb.woff2                    8.13 kB
+dist/assets/IBMPlexSerif-LightItalic-Pi-Bt6N6M3g.woff2               8.14 kB
+dist/assets/IBMPlexMono-Italic-Latin3-Dgp_SBAM.woff2                 8.36 kB
+dist/assets/IBMPlexMono-LightItalic-Latin3-CmTn9aVp.woff2            8.40 kB
+dist/assets/IBMPlexSerif-Regular-Latin3-CQ2guF0A.woff2               8.47 kB
+dist/assets/IBMPlexSerif-Light-Latin3-BVi76Vgf.woff2                 8.51 kB
+dist/assets/IBMPlexMono-SemiBoldItalic-Latin3-CuLfDuD9.woff2         8.57 kB
+dist/assets/IBMPlexSerif-SemiBold-Latin3-BAR9ta0V.woff2              8.72 kB
+dist/assets/IBMPlexSerif-Italic-Latin3-I79J1vBz.woff2                9.00 kB
+dist/assets/IBMPlexSerif-LightItalic-Latin3-BZuTg0Ws.woff2           9.02 kB
+dist/assets/IBMPlexSerif-SemiBoldItalic-Latin3-Bw2py2AX.woff2        9.20 kB
+dist/assets/IBMPlexMono-Regular-Latin2-Cb0PcqQ4.woff2               13.26 kB
+dist/assets/IBMPlexMono-Light-Latin2-BGIncM7V.woff2                 13.38 kB
+dist/assets/IBMPlexMono-SemiBold-Latin2-BQ5dFssM.woff2              13.56 kB
+dist/assets/IBMPlexMono-Light-Pi-CpwfY5jx.woff2                     13.73 kB
+dist/assets/IBMPlexMono-Regular-Pi-DnS9d3y-.woff2                   13.78 kB
+dist/assets/IBMPlexMono-SemiBold-Pi-ITbxIV3a.woff2                  13.87 kB
+dist/assets/IBMPlexMono-LightItalic-Pi-OHqUBl3S.woff2               14.08 kB
+dist/assets/IBMPlexMono-Italic-Pi-BUfxjWis.woff2                    14.22 kB
+dist/assets/IBMPlexMono-SemiBoldItalic-Pi-37JA0ocu.woff2            14.24 kB
+dist/assets/IBMPlexMono-LightItalic-Latin2-DqoQ2YE0.woff2           14.42 kB
+dist/assets/IBMPlexMono-Italic-Latin2-CSgamFg4.woff2                14.49 kB
+dist/assets/IBMPlexMono-SemiBoldItalic-Latin2-CK0U9G85.woff2        14.60 kB
+dist/assets/IBMPlexSans-Regular-Latin2-DVrf9P05.woff2               15.21 kB
+dist/assets/IBMPlexSans-Light-Latin2-C9IfqevB.woff2                 15.54 kB
+dist/assets/IBMPlexSans-SemiBold-Latin2-B0f1M9rs.woff2              15.62 kB
+dist/assets/IBMPlexMono-Light-Cyrillic-RLOopA9Y.woff2               15.68 kB
+dist/assets/IBMPlexMono-Regular-Cyrillic-ot_SLfK9.woff2             15.78 kB
+dist/assets/IBMPlexSans-Italic-Latin2-DZn1CBeW.woff2                15.98 kB
+dist/assets/IBMPlexSerif-Light-Latin2-1-vdtDMb.woff2                16.02 kB
+dist/assets/IBMPlexSerif-Regular-Latin2-Dk6MsumY.woff2              16.12 kB
+dist/assets/IBMPlexSerif-SemiBold-Latin2-sHz_E2_F.woff2             16.14 kB
+dist/assets/IBMPlexSans-SemiBoldItalic-Latin2-COiqB-bN.woff2        16.19 kB
+dist/assets/IBMPlexSans-LightItalic-Latin2-DMXpu7f7.woff2           16.21 kB
+dist/assets/IBMPlexMono-SemiBold-Cyrillic-DwtzR7Oo.woff2            16.26 kB
+dist/assets/IBMPlexSerif-LightItalic-Latin2-ClB5yUfI.woff2          16.68 kB
+dist/assets/IBMPlexSerif-Italic-Latin2-vnCeW9Os.woff2               16.86 kB
+dist/assets/IBMPlexSerif-SemiBoldItalic-Latin2-Ch9hVRNd.woff2       17.24 kB
+dist/assets/IBMPlexMono-Light-Latin1-DzdFFbkx.woff2                 17.50 kB
+dist/assets/IBMPlexMono-Regular-Latin1-DYPusg7z.woff2               17.54 kB
+dist/assets/IBMPlexMono-SemiBold-Latin1-ChfWfxA6.woff2              17.87 kB
+dist/assets/IBMPlexMono-Italic-Cyrillic-CgMbbCoP.woff2              17.90 kB
+dist/assets/IBMPlexMono-LightItalic-Cyrillic-Cej7Gceo.woff2         18.28 kB
+dist/assets/IBMPlexMono-SemiBoldItalic-Cyrillic-BvyQDf9b.woff2      18.52 kB
+dist/assets/IBMPlexMono-LightItalic-Latin1-CU8o0Z9T.woff2           19.45 kB
+dist/assets/IBMPlexMono-Italic-Latin1-DumHjrix.woff2                19.56 kB
+dist/assets/IBMPlexMono-SemiBoldItalic-Latin1-DPYDqADl.woff2        19.73 kB
+dist/assets/IBMPlexSans-Regular-Cyrillic-C5X9L19Z.woff2             20.06 kB
+dist/assets/IBMPlexSans-Light-Cyrillic-BZNsP5Vs.woff2               20.39 kB
+dist/assets/IBMPlexSans-Regular-Latin1-BUjEsRx4.woff2               20.98 kB
+dist/assets/IBMPlexSans-SemiBold-Cyrillic-92PWFvQi.woff2            21.15 kB
+dist/assets/IBMPlexSans-Italic-Cyrillic-cWWMnfSK.woff2              21.52 kB
+dist/assets/IBMPlexSans-Light-Latin1-inJE14c2.woff2                 22.24 kB
+dist/assets/IBMPlexSans-SemiBold-Latin1-CIhZjzyK.woff2              22.26 kB
+dist/assets/IBMPlexSans-LightItalic-Cyrillic-DRI38Xs8.woff2         22.34 kB
+dist/assets/IBMPlexSans-SemiBoldItalic-Cyrillic-OiGOilnu.woff2      22.36 kB
+dist/assets/IBMPlexSans-Italic-Latin1-D6ilVweT.woff2                22.92 kB
+dist/assets/IBMPlexSerif-Regular-Latin1-CJrPXLiR.woff2              22.96 kB
+dist/assets/IBMPlexSerif-Regular-Cyrillic-BNpMlk6U.woff2            23.22 kB
+dist/assets/IBMPlexSerif-Light-Cyrillic-Bn0JKtin.woff2              23.50 kB
+dist/assets/IBMPlexSans-SemiBoldItalic-Latin1-Dar2sbTJ.woff2        23.56 kB
+dist/assets/IBMPlexSerif-Light-Latin1-ySbiPmsb.woff2                23.72 kB
+dist/assets/IBMPlexSerif-SemiBold-Latin1-DLyXbml-.woff2             24.02 kB
+dist/assets/IBMPlexSans-LightItalic-Latin1-C2Ta4wwA.woff2           24.02 kB
+dist/assets/IBMPlexSerif-SemiBold-Cyrillic-s1s4XA73.woff2           24.18 kB
+dist/assets/IBMPlexSerif-Italic-Latin1-B_rJvwKj.woff2               24.51 kB
+dist/assets/IBMPlexSerif-LightItalic-Latin1-9m8QRs8h.woff2          25.07 kB
+dist/assets/IBMPlexSerif-Italic-Cyrillic-aRHR7IWL.woff2             25.38 kB
+dist/assets/IBMPlexSerif-LightItalic-Cyrillic-DCNFWp7P.woff2        25.76 kB
+dist/assets/IBMPlexSerif-SemiBoldItalic-Latin1-CiJDESOc.woff2       25.93 kB
+dist/assets/IBMPlexSerif-SemiBoldItalic-Cyrillic-Bssk48wx.woff2     26.77 kB
+dist/assets/index-BtsFs7Hx.css                                   1,211.86 kB │ gzip: 115.50 kB
+dist/assets/index-tBJ2Ajs4.js                                      371.89 kB │ gzip: 117.10 kB
+✓ built in 9.89s
+Built and typechecked NestJS backend and React frontend.
+DEPRECATION WARNING [if-function]: The Sass if() syntax is deprecated in favor of the modern CSS syntax.
+
+Suggestion: if(sass($kind): $kind; else: "nothing")
+
+More info: https://sass-lang.com/d/if-function
+
+    ╷
+163 │     @error 'Expected the #{$label} to declare `kind: reveal`, but found `#{if($kind, $kind, 'nothing')}`.';
+    │                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    node_modules\@carbon\motion\index.scss 163:76      @forward
+    node_modules\@carbon\styles\scss\_motion.scss 8:1  @forward
+    node_modules\@carbon\styles\index.scss 12:1        @forward
+    node_modules\@carbon\react\index.scss 9:1          @use
+    frontend\src\carbon.scss 1:1                       root stylesheet
+
+DEPRECATION WARNING [if-function]: The Sass if() syntax is deprecated in favor of the modern CSS syntax.
+
+Suggestion: if(sass($duration): $duration; else: "nothing")
+
+More info: https://sass-lang.com/d/if-function
+
+    ╷
+181 │     @error 'Unable to find duration `#{if($duration, $duration, 'nothing')}` for the #{$label}. Expected one of: #{map.keys($-durations)}.';
+    │                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    node_modules\@carbon\motion\index.scss 181:40      @forward
+    node_modules\@carbon\styles\scss\_motion.scss 8:1  @forward
+    node_modules\@carbon\styles\index.scss 12:1        @forward
+    node_modules\@carbon\react\index.scss 9:1          @use
+    frontend\src\carbon.scss 1:1                       root stylesheet
+
+DEPRECATION WARNING [if-function]: The Sass if() syntax is deprecated in favor of the modern CSS syntax.
+
+Suggestion: if(sass(enabled("enable-v12-release")): convert.to-rem(4px); else: convert.to-rem(13px))
+
+More info: https://sass-lang.com/d/if-function
+
+   ╷
+60 │ ┌       if(
+61 │ │         enabled('enable-v12-release'),
+62 │ │         convert.to-rem(4px),
+63 │ │         convert.to-rem(13px)
+64 │ └       )
+   ╵
+    node_modules\@carbon\styles\scss\components\toggletip\_toggletip.scss 60:7  @forward
+    node_modules\@carbon\styles\scss\components\toggletip\_index.scss 8:1       @use
+    node_modules\@carbon\styles\scss\components\slug\_slug.scss 21:1            @forward
+    node_modules\@carbon\styles\scss\components\slug\_index.scss 8:1            @use
+    node_modules\@carbon\styles\scss\components\ai-label\_ai-label.scss 11:1    @forward
+    node_modules\@carbon\styles\scss\components\ai-label\_index.scss 8:1        @use
+    node_modules\@carbon\styles\scss\components\_index.scss 11:1                @use
+    node_modules\@carbon\styles\index.scss 23:1                                 @forward
+    node_modules\@carbon\react\index.scss 9:1                                   @use
+    frontend\src\carbon.scss 1:1                                                root stylesheet
+
+DEPRECATION WARNING [if-function]: The Sass if() syntax is deprecated in favor of the modern CSS syntax.
+
+Suggestion: if(sass(enabled("enable-v12-release")): $border-radius-04; else: 2px)
+
+More info: https://sass-lang.com/d/if-function
+
+   ╷
+68 │       if(enabled('enable-v12-release'), $border-radius-04, 2px)
+   │       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    node_modules\@carbon\styles\scss\components\toggletip\_toggletip.scss 68:7  @forward
+    node_modules\@carbon\styles\scss\components\toggletip\_index.scss 8:1       @use
+    node_modules\@carbon\styles\scss\components\slug\_slug.scss 21:1            @forward
+    node_modules\@carbon\styles\scss\components\slug\_index.scss 8:1            @use
+    node_modules\@carbon\styles\scss\components\ai-label\_ai-label.scss 11:1    @forward
+    node_modules\@carbon\styles\scss\components\ai-label\_index.scss 8:1        @use
+    node_modules\@carbon\styles\scss\components\_index.scss 11:1                @use
+    node_modules\@carbon\styles\index.scss 23:1                                 @forward
+    node_modules\@carbon\react\index.scss 9:1                                   @use
+    frontend\src\carbon.scss 1:1                                                root stylesheet
+
+DEPRECATION WARNING [if-function]: The Sass if() syntax is deprecated in favor of the modern CSS syntax.
+
+Suggestion: if(sass(enabled("enable-v12-release")): spacing.$spacing-02; else: spacing.$spacing-05)
+
+More info: https://sass-lang.com/d/if-function
+
+   ╷
+23 │   if(enabled('enable-v12-release'), spacing.$spacing-02, spacing.$spacing-05)
+   │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    node_modules\@carbon\styles\scss\components\tooltip\_tooltip.scss 23:3     @forward
+    node_modules\@carbon\styles\scss\components\tooltip\_index.scss 8:1        @use
+    node_modules\@carbon\styles\scss\components\button\_button.scss 13:1       @forward
+    node_modules\@carbon\styles\scss\components\button\_index.scss 10:1        @use
+    node_modules\@carbon\styles\scss\components\toggletip\_toggletip.scss 8:1  @forward
+    node_modules\@carbon\styles\scss\components\toggletip\_index.scss 8:1      @use
+    node_modules\@carbon\styles\scss\components\slug\_slug.scss 21:1           @forward
+    node_modules\@carbon\styles\scss\components\slug\_index.scss 8:1           @use
+    node_modules\@carbon\styles\scss\components\ai-label\_ai-label.scss 11:1   @forward
+    node_modules\@carbon\styles\scss\components\ai-label\_index.scss 8:1       @use
+    node_modules\@carbon\styles\scss\components\_index.scss 11:1               @use
+    node_modules\@carbon\styles\index.scss 23:1                                @forward
+    node_modules\@carbon\react\index.scss 9:1                                  @use
+    frontend\src\carbon.scss 1:1                                               root stylesheet
+
+WARNING: 4 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.
+

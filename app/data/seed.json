@@ -1,0 +1,114 @@
+{
+  "Employee": [
+    {
+      "id": "00000000-0000-4000-8000-000000000001",
+      "employeeNumber": "EMP-001",
+      "fullName": "Maya Chen",
+      "email": "maya.chen@example.test",
+      "jobTitle": "Product Designer",
+      "startDate": "2025-01-06",
+      "endDate": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000002",
+      "employeeNumber": "EMP-002",
+      "fullName": "Alex Morgan",
+      "email": "alex.morgan@example.test",
+      "jobTitle": "People Lead",
+      "startDate": "2025-01-06",
+      "endDate": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000003",
+      "employeeNumber": "EMP-003",
+      "fullName": "Jordan Ellis",
+      "email": "jordan.ellis@example.test",
+      "jobTitle": "Software Engineer",
+      "startDate": "2025-01-06",
+      "endDate": null
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000004",
+      "employeeNumber": "EMP-004",
+      "fullName": "Priya Shah",
+      "email": "priya.shah@example.test",
+      "jobTitle": "Delivery Consultant",
+      "startDate": "2025-01-06",
+      "endDate": null
+    }
+  ],
+  "Client": [
+    {
+      "id": "00000000-0000-4000-8000-000000000011",
+      "clientCode": "NORTH",
+      "name": "Northstar Studio"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000012",
+      "clientCode": "EVER",
+      "name": "Evergreen Works"
+    }
+  ],
+  "Project": [
+    {
+      "id": "00000000-0000-4000-8000-000000000021",
+      "clientId": "00000000-0000-4000-8000-000000000011",
+      "projectCode": "NS-001",
+      "name": "Customer experience refresh",
+      "description": "Research and redesign the customer onboarding experience.",
+      "startDate": "2026-01-01",
+      "endDate": "2026-12-31"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000022",
+      "clientId": "00000000-0000-4000-8000-000000000012",
+      "projectCode": "EW-002",
+      "name": "Operations workspace",
+      "description": "Create a shared workspace for the service delivery team.",
+      "startDate": "2026-01-01",
+      "endDate": "2026-12-31"
+    }
+  ],
+  "PerformanceReview": [
+    {
+      "id": "00000000-0000-4000-8000-000000000031",
+      "assessedEmployeeId": "00000000-0000-4000-8000-000000000001",
+      "reviewerId": "00000000-0000-4000-8000-000000000002",
+      "periodStart": "2026-01-01",
+      "periodEnd": "2026-06-30",
+      "reviewDate": "2026-07-08",
+      "summary": "Maya turned customer research into a clearer onboarding journey and helped the team make informed design decisions.",
+      "strengths": "Strong facilitation, careful synthesis and generous peer feedback.",
+      "developmentActions": "Lead the next discovery workshop and mentor a colleague in research synthesis."
+    }
+  ],
+  "ProjectAssignment": [
+    {
+      "id": "00000000-0000-4000-8000-000000000041",
+      "projectId": "00000000-0000-4000-8000-000000000021",
+      "employeeId": "00000000-0000-4000-8000-000000000001",
+      "responsibility": "Experience design",
+      "startDate": "2026-07-01",
+      "endDate": "2026-12-31",
+      "allocationPercent": 60
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000042",
+      "projectId": "00000000-0000-4000-8000-000000000022",
+      "employeeId": "00000000-0000-4000-8000-000000000001",
+      "responsibility": "Design advisory",
+      "startDate": "2026-07-01",
+      "endDate": "2026-12-31",
+      "allocationPercent": 40
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000043",
+      "projectId": "00000000-0000-4000-8000-000000000022",
+      "employeeId": "00000000-0000-4000-8000-000000000003",
+      "responsibility": "Application engineering",
+      "startDate": "2026-07-01",
+      "endDate": "2026-12-31",
+      "allocationPercent": 75
+    }
+  ]
+}

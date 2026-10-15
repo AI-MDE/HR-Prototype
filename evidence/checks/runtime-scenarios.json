@@ -1,0 +1,55 @@
+[
+  {
+    "uri": "app/tests/runtime.feature",
+    "name": "Runnable prototype verification",
+    "keyword": "Feature",
+    "elements": [
+      {
+        "name": "Fresh database startup and safe restart",
+        "line": 6,
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@feature:app-start-contract/one-command-start",
+            "line": 5
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "the executable startup integration test proves database creation, seed, restart, health and unrelated-port refusal",
+            "line": 7,
+            "result": {
+              "status": "passed",
+              "duration": 9580255500
+            }
+          }
+        ]
+      },
+      {
+        "name": "Full regression output is captured",
+        "line": 10,
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@feature:build-and-regression/test-log-present",
+            "line": 9
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Then ",
+            "name": "both executable suites pass and the runner writes their current output and successful exit to test.log",
+            "line": 11,
+            "result": {
+              "status": "passed",
+              "duration": 18468000000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

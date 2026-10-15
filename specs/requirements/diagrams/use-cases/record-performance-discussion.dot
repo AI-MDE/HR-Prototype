@@ -1,0 +1,15 @@
+digraph behavior {
+ rankdir=TB;
+ node [shape=box, style="rounded", fontname="Arial"];
+ s0 [label="Manager identifies the assessed Employee and the reviewing\nEmployee."];
+ s1 [label="Manager reads previous PerformanceReview records for context."];
+ s0 -> s1;
+ s2 [label="Manager enters discussion date, assessment period, summary,\nstrengths and development actions."];
+ s1 -> s2;
+ s3 [label="System validates and creates PerformanceReview linked to employee\nand reviewer."];
+ s2 -> s3;
+ s4 [label="Manager sees the recorded discussion and follow-up actions."];
+ s3 -> s4;
+ alternatives [label="Missing employee or reviewer prevents recording. Invalid dates\nare refused for correction. Cancellation before confirmation\ncreates no review.",shape=note];
+ s0 -> alternatives [style=dashed,label="Alternative outcomes"];
+}

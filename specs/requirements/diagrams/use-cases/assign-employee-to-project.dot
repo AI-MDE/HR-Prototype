@@ -1,0 +1,15 @@
+digraph behavior {
+ rankdir=TB;
+ node [shape=box, style="rounded", fontname="Arial"];
+ s0 [label="Coordinator selects Project and reads scope and dates."];
+ s1 [label="Coordinator selects Employee and reads employment dates and\nexisting ProjectAssignments."];
+ s0 -> s1;
+ s2 [label="Coordinator supplies responsibility, assignment dates and\nallocation percentage."];
+ s1 -> s2;
+ s3 [label="System validates the commitment and creates ProjectAssignment if\nall constraints hold."];
+ s2 -> s3;
+ s4 [label="Coordinator sees the employee commitment against the project."];
+ s3 -> s4;
+ alternatives [label="Missing employee or project prevents assignment. Invalid dates or\ninsufficient capacity are refused with no assignment; the\ncoordinator may revise the proposal or cancel. Partial allocation\nis never automatic.",shape=note];
+ s0 -> alternatives [style=dashed,label="Alternative outcomes"];
+}

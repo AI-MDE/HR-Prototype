@@ -1,0 +1,10 @@
+CREATE TABLE employees (id uuid PRIMARY KEY, employee_number text NOT NULL UNIQUE, full_name text NOT NULL, email text NOT NULL, job_title text NOT NULL, start_date date NOT NULL, end_date date, CHECK(end_date IS NULL OR end_date >= start_date));
+CREATE TABLE clients (id uuid PRIMARY KEY, client_code text NOT NULL UNIQUE, name text NOT NULL);
+CREATE TABLE projects (id uuid PRIMARY KEY, client_id uuid NOT NULL REFERENCES clients(id), project_code text NOT NULL UNIQUE, name text NOT NULL, description text NOT NULL, start_date date NOT NULL, end_date date NOT NULL, CHECK(end_date >= start_date));
+CREATE TABLE performance_reviews (id uuid PRIMARY KEY, assessed_employee_id uuid NOT NULL REFERENCES employees(id), reviewer_id uuid NOT NULL REFERENCES employees(id), period_start date NOT NULL, period_end date NOT NULL, review_date date NOT NULL, summary text NOT NULL, strengths text NOT NULL, development_actions text NOT NULL, CHECK(period_end>=period_start AND review_date>=period_end));
+CREATE TABLE project_assignments (id uuid PRIMARY KEY, project_id uuid NOT NULL REFERENCES projects(id), employee_id uuid NOT NULL REFERENCES employees(id), responsibility text NOT NULL, start_date date NOT NULL, end_date date NOT NULL, allocation_percent numeric(5,2) NOT NULL, CHECK(end_date>=start_date), CHECK(allocation_percent>0 AND allocation_percent<=100));
+CREATE INDEX projects_client_idx ON projects(client_id);
+CREATE INDEX reviews_employee_idx ON performance_reviews(assessed_employee_id);
+CREATE INDEX reviews_reviewer_idx ON performance_reviews(reviewer_id);
+CREATE INDEX assignments_project_idx ON project_assignments(project_id);
+CREATE INDEX assignments_employee_idx ON project_assignments(employee_id);

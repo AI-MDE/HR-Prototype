@@ -1,0 +1,60 @@
+{
+  "type": "capability-design",
+  "capability": "project-assignments",
+  "entities": {
+    "Client": {
+      "features": {
+        "unique": {
+          "columns": [
+            [
+              "client_code"
+            ]
+          ]
+        },
+        "label": {
+          "attributes": [
+            "clientCode",
+            "name"
+          ]
+        }
+      }
+    },
+    "Project": {
+      "features": {
+        "unique": {
+          "columns": [
+            [
+              "project_code"
+            ]
+          ]
+        },
+        "label": {
+          "attributes": [
+            "projectCode",
+            "name"
+          ]
+        }
+      }
+    },
+    "ProjectAssignment": {
+      "features": {
+        "label": {
+          "attributes": [
+            "responsibility",
+            "startDate",
+            "endDate"
+          ]
+        }
+      },
+      "operations": {
+        "Create": {
+          "locks": {
+            "entities": [
+              "Employee"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

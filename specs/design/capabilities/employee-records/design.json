@@ -1,0 +1,32 @@
+{
+  "type": "capability-design",
+  "capability": "employee-records",
+  "entities": {
+    "Employee": {
+      "features": {
+        "unique": {
+          "columns": [
+            [
+              "employee_number"
+            ]
+          ]
+        },
+        "label": {
+          "attributes": [
+            "employeeNumber",
+            "fullName"
+          ]
+        }
+      },
+      "operations": {
+        "Update": {
+          "locks": {
+            "entities": [
+              "Employee"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

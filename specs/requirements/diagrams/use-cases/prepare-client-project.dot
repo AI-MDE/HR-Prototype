@@ -1,0 +1,15 @@
+digraph behavior {
+ rankdir=TB;
+ node [shape=box, style="rounded", fontname="Arial"];
+ s0 [label="Coordinator reads Clients and selects one; if absent, creates\nClient."];
+ s1 [label="Coordinator reads Projects to check whether this project exists."];
+ s0 -> s1;
+ s2 [label="Coordinator supplies project code, name, scope and planned dates."];
+ s1 -> s2;
+ s3 [label="System validates and creates Project linked to the selected\nClient."];
+ s2 -> s3;
+ s4 [label="Coordinator sees the project ready for staffing."];
+ s3 -> s4;
+ alternatives [label="An existing project is shown without duplicate creation. Invalid\ndates or duplicate codes are refused. Cancellation creates no\nproject; a client registered earlier remains available.",shape=note];
+ s0 -> alternatives [style=dashed,label="Alternative outcomes"];
+}

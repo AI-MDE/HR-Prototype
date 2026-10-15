@@ -1,0 +1,3 @@
+HR-Prototype health 2026-10-15T16:13:08.887Z
+{"application":"HR-Prototype","status":"healthy","dependencies":{"database":{"status":"healthy","name":"hrproto"}}}
+exit 0

@@ -1,0 +1,14 @@
+{
+  "parts": [
+    {
+      "name": "backend",
+      "output": "app/dist",
+      "files": 4
+    },
+    {
+      "name": "frontend",
+      "output": "app/frontend/dist",
+      "files": 93
+    }
+  ]
+}

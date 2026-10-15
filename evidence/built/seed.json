@@ -1,0 +1,10 @@
+{
+  "producedAt": "2026-10-15T16:11:37.066Z",
+  "entities": {
+    "Employee": 4,
+    "Client": 2,
+    "Project": 2,
+    "PerformanceReview": 1,
+    "ProjectAssignment": 3
+  }
+}

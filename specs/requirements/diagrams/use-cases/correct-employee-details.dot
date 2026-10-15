@@ -1,0 +1,13 @@
+digraph behavior {
+ rankdir=TB;
+ node [shape=box, style="rounded", fontname="Arial"];
+ s0 [label="HR identifies Employee and reads the current record."];
+ s1 [label="HR supplies corrected identity, contact, job or employment\ninformation."];
+ s0 -> s1;
+ s2 [label="System validates and updates Employee against its rules and\nexisting commitments."];
+ s1 -> s2;
+ s3 [label="HR sees the corrected record."];
+ s2 -> s3;
+ alternatives [label="No matching employee means no update. Duplicate numbers, invalid\ndates and changes invalidating assignments are refused. HR\ncorrects the proposal or cancels with the record unchanged.",shape=note];
+ s0 -> alternatives [style=dashed,label="Alternative outcomes"];
+}

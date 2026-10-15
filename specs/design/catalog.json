@@ -1,0 +1,24 @@
+{
+  "type": "design-catalog",
+  "features": {
+    "storage-naming": {
+      "realization": "snake_case plural table names and snake_case columns; UUID primary keys",
+      "parameters": {
+        "convention": "snake"
+      }
+    },
+    "foreign-key-indexes": {
+      "realization": "Migration-created B-tree index on every foreign-key column"
+    },
+    "standard-errors": {
+      "realization": "Shared NestJS exception mapping with fixed status, code and rule identifier; no database or stack details"
+    }
+  },
+  "defaults": {
+    "application": [
+      "storage-naming",
+      "foreign-key-indexes",
+      "standard-errors"
+    ]
+  }
+}

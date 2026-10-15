@@ -1,0 +1,12 @@
+{
+ "name":"hrproto", "version":"0.1.0", "private":true,
+ "scripts": {
+  "mde:install":"npm --prefix app run mde:install",
+  "mde:build":"npm --prefix app run mde:build",
+  "mde:test":"npm --prefix app run mde:test",
+  "mde:start":"npm --prefix app run mde:start",
+  "mde:stop":"npm --prefix app run mde:stop",
+  "mde:health":"npm --prefix app run mde:health"
+ },
+ "mde":{"url":"http://127.0.0.1:${WEB_PORT}${BASE_PATH}"}
+}
