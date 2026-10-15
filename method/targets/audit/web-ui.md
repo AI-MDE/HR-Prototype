@@ -60,7 +60,7 @@ changed" is not a pass.
 
 ### Configured data sources  `[feature: data-source-switch]`
 
-- Do pages use the configured data source, with any substitute explicit and its limits recorded?
+- Do pages reach their data only through the one data-access module, from the source `.env` names (the runtime for a prototype on it, the application's own backend otherwise), with any other substitute explicit and its limits recorded?
 
 ### Human date display (business dates, no raw ISO)  `[feature: date-display-format]`
 

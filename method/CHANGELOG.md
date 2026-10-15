@@ -2,6 +2,43 @@
 
 Changes to the Method (`method/`), newest first. The version is in [VERSION.md](VERSION.md). An application's own copy of the Method carries this file, so after `mde update-app` it shows what changed since the application's previous version.
 
+2026-10-15 — 0.3.120 — Enhanced use case, a preview Feature; a release can switch a Feature off.
+
+- **[Enhanced use case](features/business-requirements/enhanced-use-case.md)** (`status: preview`), in the business-requirements and Prototype Targets, on trial in this release. A Flow step is one business interaction (the actor acts, the system responds) and lists, indented under it, the operations it runs, in the Invoked Entity Operations line form; Invoked Entity Operations is then read from the steps, not written. A pause is a `**Waits**` step naming its business event, actor, and deadline. Outcome names each ending (`- **Assigned** — …`); each alternative names the step it branches from and where it ends (`- **At 3, …** — … → back to 3, or **Refused**.`); Related Use Cases may say `Preceded by [X](x.md), outcome **Prepared**`. The prototype's wizard follows the steps exactly. From the proposal in `work/current/use-case-revision-proposal.md`.
+- **A Feature's `status`**, a product-level switch per release: `preview` ships it on trial (its Targets mark it "(preview)"); `off` keeps the file but compiles it into no Target. To drop a preview for good, delete its file and recompile.
+- **For an application:** use cases written or changed from now on take the enhanced form; those written before keep working, and move to it when next changed.
+
+2026-10-15 — 0.3.119 — Every entity declares its Display label again.
+
+- **[Entity](metamodel/requirements/entity.md): `**Display label:** fullName`**, a line under the Attributes table naming the attribute people recognize a record by (or several, `firstName lastName`), in lists, lookups, and wherever a related record is shown. It is the record's business-facing identity: never the technical id, and a code or number only when people really know the record by it. It was the `display-label` property role of the entity model until the Feature cleanup of 0.3.x dropped it; [related-entity display](features/web-ui/reference-display.md) kept referring to it.
+- **[business-requirements](features/business-requirements/entity.md)**: every entity has one; an entity with no attribute people would recognize gets one (a name, a title) rather than being labelled by its id. `mde verify` (Entity model row) and the audit check it.
+- The MDE runtime labels records by it (lists, references, the prototype's pickers); without one it still guesses.
+- **For an application:** add `**Display label:** …` under each entity's Attributes table; until then the Entity model row reports it.
+
+2026-10-14 — 0.3.118 — A prototype's requirements and UI design meet the same Targets as any Strategy.
+
+- **[Prototyping Strategy](strategy/prototype.md)**: its Targets are the business requirements and the UI design, as in every Strategy, and the Prototype Target (`targets: [business-requirements, ui-design, prototype]`; before, `[prototype, business-requirements]`). What the user approves in a prototype is what the build starts from. No other Target is required, on the runtime or on a full stack: not the architecture, application, API, or persistence design, nor the API, server, persistence, testing, Evidence, documentation, or deployment.
+- **"Working light" is gone**: it told the agent to stay at a high conceptual level and elaborate only as far as a step needed, so a prototype's roles had no Critical Success Factors and no dashboards. Now each step is shown at the level the user can judge, but what is written meets its Target: every role with its Critical Success Factors, the pages as the UI design asks. What the step does not need yet is assumed and recorded as a Question, not left out.
+- **[Prototype](features/prototype/prototype.md), step 3**: the page set as the UI design Target asks, each role's landing page its dashboard, one panel per Critical Success Factor.
+- [`mde-runtime`](stacks/mde-runtime.yaml) lists the same Targets.
+- **For an application:** a prototype's `work/targets.json` adds `ui-design`; roles that own outcomes get their Critical Success Factors, and the page set their dashboards.
+
+2026-10-14 — 0.3.117 — A prototype has its own stack: `mde-runtime`.
+
+- **[`mde-runtime`](stacks/mde-runtime.yaml)**, a new stack: the MDE runtime and JSON data, no backend code, database, or container; React pages for step 4 only. Its Targets: business-requirements and prototype. The [Prototyping Strategy](strategy/prototype.md) runs on it by default.
+- **A full stack already recorded is the build's, not the prototype's** ([Prototyping Strategy](strategy/prototype.md)): a stack such as `nest-carbon` in the architecture overview says what the application will be built on; the prototype still runs on `mde-runtime`, its step 4 pages taking that stack's frontend and UI profile. A prototype is built on a full stack only when the user says so for this prototype, recorded in the Goal; on `mde-runtime` nothing backend is installed and no migrations are written. Before, an agent read a stack chosen at creation as the user choosing a full-stack prototype, and installed NestJS and PostgreSQL.
+- [Stacks](stacks/README.md) lists it; [Transition from Prototype](strategy/guided.md#transition-from-prototype): a prototype on `mde-runtime` selects its full stack there.
+- **For an application:** a prototype whose Goal "retains" a full stack without the user having asked for a full-stack prototype goes back to the MDE runtime: the recorded stack stays as the build's, its Targets are the Prototyping Strategy's, and `.env` says `SERVER_SOURCE=runtime`.
+
+2026-10-14 — 0.3.116 — A prototype's pages carry into the build: one data-access module.
+
+- **[Prototype](features/prototype/prototype.md), step 4:** the generated pages never call the runtime themselves; every call goes through one data-access module of the frontend, which alone knows the runtime's paths, `folder`, and role headers, and `.env` says `SERVER_SOURCE=runtime`. The build replaces that module with one calling `API_BASE`, and the pages stay. Audited.
+- **[Configured data sources](features/prototyping/data-source-switch.md)** said "a real backend is the normal source, prototype included", against the [Prototyping Strategy](strategy/prototype.md)'s default (the MDE runtime and JSON data). Now: the runtime is a prototype's default source, the application's own backend the build's; switching changes `.env` and the one module, never the pages. The other prototyping Features' Applicability ([guided workflows](features/prototyping/guided-workflows.md), [sample data](features/prototyping/model-derived-data-pipeline.md), [role switcher](features/prototyping/role-switcher.md)) says the same.
+- **[Configuration](features/server/env-contract.md):** one naming for the source: `SERVER_SOURCE` picks it; with `runtime`, the module reads `MDE_RUNTIME_URL` and `MDE_PROJECT`, which the Workbench sets, so they are not written in `.env`.
+- **[Transition from Prototype](strategy/guided.md#transition-from-prototype)** assesses the two things the runtime stands in for: data (replace the module, `SERVER_SOURCE=api`; a page calling the runtime itself is a gap) and identity (the runtime trusts `x-role` and `x-actor`; the build resolves the principal at the server's boundary and enforces Authorization there).
+- Recompiled: the Prototype, Web UI, and Dev setup Targets and their audits.
+- **For an application:** a prototype whose pages call the runtime directly moves those calls into one data-access module, and `.env` declares `SERVER_SOURCE=runtime`.
+
 2026-10-14 — 0.3.115 — Changing the Strategy, in any direction.
 
 - **[Changing the Strategy](metamodel/work/strategy.md#changing-the-strategy)**: the user says so in plain words; there is no command. The agent records it in the Goal's front matter and *Strategy* section and in Current Work's link together, and logs it in Status; proposes the Goal's Targets anew (in `work/targets.json`, added ones `{ "*": {} }`, dropped ones `leftOut` with the reason, records of work done kept); and brings the work up to the new rigor. Stricter: from Prototype, Guided's transition assessment; to Controlled, a full verify and an audit of every completed Target not verified or audited since its completion, before the next stage. Looser: nothing redone, the gates relax from now on.

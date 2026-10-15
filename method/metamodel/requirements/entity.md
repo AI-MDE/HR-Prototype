@@ -18,7 +18,7 @@ Applications created before ABEs keep their entities in `specs/requirements/enti
 ## Structure
 
 - Purpose
-- Attributes
+- Attributes, and the Display label
 - Relationships
 - Operations
 - States
@@ -31,10 +31,13 @@ An entity spec holds the business meaning only. How the entity is realized is de
 
 Attributes use `Attribute | Type | Required | Description`, optionally followed by Features (the optional Features applied to that attribute, such as `attachments`).
 
+**Display label.** Every entity says how people recognize one of its records, in lists, lookups, and wherever a related record is shown: a line under the Attributes table, `**Display label:** fullName`, naming the attribute, or several in order when the label is made of them (`**Display label:** firstName lastName`), optionally followed by a note after a dash. It is the record's business-facing identity, how people know it, not what the database keys on: never the technical id, and a code or number only when people really know the record by it (an order number quoted on the phone). An entity everyone knows by a name says so (`**Display label:** name`).
+
 **Features** lists the [optional Features](../feature.md) the business needs on this entity, by id, with the options chosen: `- optimistic-concurrency`, `- audit-trail: createdBy, updatedBy`. Each is a business need the design must realize; one the business does not need is left out. The retired `## Aspects` section is not read; `mde migrate-features` converts an application that still uses it. Operations list the applicable Create, Read, Update, and Delete and the domain operations (such as Submit or Approve).
 
 The MDE runtime runs an entity from this spec as written (so a prototype, and the Workbench's live data, need no other definition of it), once sample data exists for it: a spec alone has no records to show. It reads:
 
+- **Display label**: the attributes it names label each record, in lists and in the records that refer to it; without one, the runtime guesses (an attribute called `name` or `title`, else first and last name, else the first required text).
 - **Attributes**: a Type of `uuid`, `string`, `text`, `number`, `integer`, `decimal`, `boolean`, `date`, or `datetime`; `enum`, with its values listed in the Description (`Full-time, Part-time, Contractor`) or as `enum(A, B)`; or another entity's name, for a reference (also written `Client ref`). `id` (or the first `uuid` attribute) is the key.
 - **Relationships**: a table, one row per related entity:
 

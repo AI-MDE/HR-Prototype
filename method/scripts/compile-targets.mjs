@@ -179,9 +179,12 @@ for (const file of walk(capsDir)) {
   // Only build Features compile into Targets (metamodel/feature.md). An optional Feature belongs in
   // optional-features/, which compile-optional-features.mjs indexes and checks for leaks.
   if (fm.kind === 'optional') { console.warn(`! ${path.relative(methodDir, file)} is kind: optional; not compiled (move it to optional-features/)`); continue; }
+  // A product-level switch, per release: `status: preview` ships a Feature on trial (compiled,
+  // marked in its Target); `status: off` keeps the file but leaves it out of every Target.
+  if (fm.status === 'off') { console.warn(`- ${path.relative(methodDir, file)} is status: off; not compiled`); continue; }
   caps.push({
     id: fm.id || path.basename(file, '.md'),
-    title: fm.title || fm.id,
+    title: `${fm.title || fm.id}${fm.status === 'preview' ? ' (preview)' : ''}`,
     impacts: Array.isArray(fm.impacts) ? fm.impacts : [],
     body,
     file,

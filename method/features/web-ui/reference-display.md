@@ -25,7 +25,7 @@ Applies to relevant pages and UI interactions. Respect the selected UI architect
 
 ## Impact on web-ui
 
-- A related entity is shown by its **display label** (the property with role `display-label`, possibly derived, such as first and last name), never its technical id; a unique property appears only when it is the display label or to disambiguate. A form field that sets a reference is a selection control listing the related entity by display label, labelled by the entity (`Employee`, not `Employee ID`), submitting the id behind the scenes; never a text field for a raw id.
+- A related entity is shown by its **display label** (the attributes its spec's `**Display label:**` names, such as a name, or first and last name together; [Entity](../../metamodel/requirements/entity.md)), never its technical id; a unique property appears only when it is the display label or to disambiguate. A form field that sets a reference is a selection control listing the related entity by display label, labelled by the entity (`Employee`, not `Employee ID`), submitting the id behind the scenes; never a text field for a raw id.
 - So the page never needs a second lookup, every API response that returns a referencing resource (list, read, create, and update) carries the display label: the repository joins the referenced table and aliases its display label, and a create or update that already fetched the related entity returns it. A `row.employeeName ?? row.employeeId` fallback in the UI is the tell.
 
 ## Rationale

@@ -12,6 +12,7 @@ A preset identifier alone is a starting selection. Resolved Specs govern subsequ
 
 ## Available presets
 
+- `mde-runtime.yaml` — a prototype on the MDE runtime: the entity specs run against JSON data, no backend code or database; optional React pages calling the runtime's API. The [Prototyping Strategy](../strategy/prototype.md)'s stack; the build later selects one of the full stacks below, and the prototype's pages carry over to it.
 - `web-default.yaml` — TypeScript, Node.js, Express, REST/JSON, PostgreSQL, React, Vite.
 - `web-pug.yaml` — TypeScript, Node.js, Express, REST/JSON, PostgreSQL, Pug.
 - `cloudflare.yaml` — TypeScript-oriented Cloudflare deployment using Workers-compatible services.

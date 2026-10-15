@@ -20,7 +20,7 @@ maps to a use case → its live route.
 
 ## Applicability
 
-Applies to a preview or prototype requested for the scope. Use the selected real components and connected sample data; any substitute requires an explicit project decision.
+Applies to a preview or prototype requested for the scope. Use connected sample data from the selected source: the MDE runtime by default for a prototype (the [Prototyping Strategy](../../strategy/prototype.md)), the application's own backend otherwise; any other substitute requires an explicit project decision.
 
 ## Impact on web-ui
 

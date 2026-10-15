@@ -66,7 +66,7 @@ filled" is never a genuine verdict on its own.
 
 ### Entity  `[feature: business-requirements-entity]`
 
-- **Entity:** Are required entities and relationships present and semantically complete? Are scoped operations explicit, including prohibited behavior and domain operations? Does every operation a role needs have a use case that invokes it with that role as actor, without invented roles? Is the spec free of design (no Authorization table, Design Semantics, or Storage View)? Do operations, rules, and access refer to concepts that are actually declared?
+- **Entity:** Are required entities and relationships present and semantically complete? Does every entity declare a Display label naming the attributes people recognize a record by, never the technical id, and a code only when people really know the record by it? Are scoped operations explicit, including prohibited behavior and domain operations? Does every operation a role needs have a use case that invokes it with that role as actor, without invented roles? Is the spec free of design (no Authorization table, Design Semantics, or Storage View)? Do operations, rules, and access refer to concepts that are actually declared?
 
 ### Glossary  `[feature: business-requirements-glossary]`
 
@@ -127,6 +127,15 @@ filled" is never a genuine verdict on its own.
   per-step state tables into the business use case?
   · evidence: use-case Test Conditions section
   · when: static + audit
+
+### Enhanced use case (preview)  `[feature: enhanced-use-case]`
+
+- Is each Flow step one business interaction, the actor's action and the system's response together, naming its actor?
+- Does each step list exactly the operations it runs, as the entity declares them, and no step claim an effect ("records it", "approves") that no operation of it performs?
+- Is every pause a **Waits** step naming its business event, its actor, and its deadline, with an alternative for the deadline passing?
+- Are the outcomes named, each with what is then true, and is every outcome reached (the first by the Flow, the others by an alternative)?
+- Does every alternative name the step it branches from, its condition, and where it ends (a step or an outcome)?
+- Does a use case that depends on another say so (Preceded by), with an outcome of that use case that the other actually has?
 
 ### Industry patterns  `[feature: industry-patterns]`
 

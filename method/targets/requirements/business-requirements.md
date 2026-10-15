@@ -128,6 +128,7 @@ The Domain overview identifies the business problem or opportunity, the business
 ### Entity  `[feature: business-requirements-entity]`
 
 - Preserve meaningful relationship labels, roles, cardinalities, temporal meaning, and ownership: each relationship is a row of the Relationships table with its Role, Cardinality, Kind, and Cascade ([Entity](../../metamodel/requirements/entity.md)), never a bare link. Use business identifiers when the business uses them; do not fabricate identifiers to suit a database design.
+- Every entity has a **Display label** ([Entity](../../metamodel/requirements/entity.md)): the attribute or attributes people recognize a record by, in lists, lookups, and related records. It is the business-facing identity, never the technical id; a code or number only when people really know the record by it. When an entity has no attribute people would recognize it by, the model is missing one (a name, a title); add it rather than label the record by its id.
 - Review durable objects that are referenced repeatedly for entities that are missing.
 - Operations are explicit: the applicable Create, Read, Update, and Delete, stating when one is prohibited, then domain operations such as Submit or Approve, each saying what it requires and its lifecycle effect. Its inputs and realization are design, in its capability's [Capability Design](../../metamodel/design/capability-design.md); who may run it is derived from the use cases that invoke it ([Authorization](../../metamodel/design/authorization.md)). The entity spec holds neither, so the requirements stay the business meaning only. Operations remain subject to rules, authorization, and lifecycle constraints. An internal or system operation needs no user-facing use case, but its trigger and verification must still be explicit.
 - Use cases invoke entity operations; they do not duplicate entity rules. Storage mapping belongs in Design (the design catalog's naming convention and the capability design's overrides); declaring an entity does not implement it.
@@ -182,6 +183,28 @@ Trigger, preconditions, flow, alternatives, objects, and outcome tell one causal
 - **One trigger per use case.** Different triggers needing a different driving object, decision, goal, or outcome are separate use cases. Alternate flows vary the same transaction; they do not add a later lifecycle goal.
 - **Quantified fulfilment.** Where a need is measured (staffing, orders, payments, capacity, inventory, budget, quotas), define the requested amount and unit, fulfilled and remaining amounts, whether fulfilment is partial or additive, whether several results may fulfil one need or one result several needs, the over-fulfilment policy, and reconciliation after cancellation or reversal.
 - **Situations become test conditions.** State the important situations (completion, partial fulfilment, exceptions, cancellation, insufficient capacity, unauthorized participation) as conditions with one expected business result each: "the candidate has only 40% available against a 60% demand" → "a 40% assignment is created and the demand stays open for 20%". Concrete values, state tables, and API or UI mechanics belong to the use-case realization in Design.
+
+### Enhanced use case (preview)  `[feature: enhanced-use-case]`
+
+- **A step is one business interaction:** the actor acts, and the system responds, in one numbered step of the Flow. The actor's input and the system's response are the same step, not two ("The Coordinator proposes the assignment; the system checks the dates and capacity, and records it"). A step names its actor.
+- **Each step lists the operations it runs**, as bullets indented under it, one entity per bullet, in the form of an Invoked Entity Operations line: a link to the entity, a dash, its operations as the entity declares them.
+
+  ```markdown
+  ## Flow
+
+  1. The Coordinator selects the project to staff.
+     - [Project](../../features/project/project.md) — Read
+  2. The Coordinator proposes the assignment (responsibility, dates, allocation); the system checks the dates and the employee's capacity, and records it.
+     - [ProjectAssignment](../../features/project/project-assignment.md) — Create
+  3. The Coordinator sees the commitment on the project.
+  ```
+
+  A step that runs none (a result seen, a decision taken outside the application) has no bullets. **Invoked Entity Operations is not written:** it is the steps' operations together, and is read from them.
+- **Waits are steps.** When the use case pauses until another actor acts or time passes, the step begins with **Waits** and says for whom, for what business event, and the deadline if there is one (`3. **Waits** for the People Manager's approval of the allocation, at most 3 working days.`). It names the business event, never a queue, poller, or webhook. What happens at the deadline is an alternative.
+- **Outcome names each ending**, one bullet each, with what is then true: `- **Assigned** — the commitment exists for the employee, project, dates, and allocation.` The main Flow ends in the first. Postconditions and Output are said here, not in sections of their own.
+- **Each alternative branches from a step and ends somewhere:** `- **At 2, the allocation would exceed 100%** — the system refuses and shows the employee's commitments → back to 2, or **Refused**.` It names the step it branches from (`At <n>`, or `At any step`), the condition in bold, what happens, and, after `→`, the step it returns to or the outcome it ends in. Every outcome but the first is reached by an alternative.
+- **The journey:** when another use case must come first, Related Use Cases says so, with the outcome that makes this one possible: `- Preceded by [Prepare client project](../../features/business-requirements/prepare-client-project.md), outcome **Prepared**.`
+- Input is said in the step where the actor gives it. Context and Related Pages are not written: what passes between steps, and the pages, are design.
 
 ### Governed values from specs  `[feature: governed-values-from-specs]`
 

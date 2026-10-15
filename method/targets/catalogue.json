@@ -585,7 +585,7 @@
         "id": "business-requirements-entity/entity-model",
         "alias": "business-requirements-entity.1",
         "feature": "business-requirements-entity",
-        "text": "Does every entity have an attributes table with types of the Method and a key, its relationships as the table (Related, Role, Cardinality, Kind, Cascade) with valid values linking real entities, transitions only between its declared states, and an enum attribute holding those states (`mde verify`, Entity model row)?",
+        "text": "Does every entity have an attributes table with types of the Method and a key, a Display label naming its attributes (not the bare id), its relationships as the table (Related, Role, Cardinality, Kind, Cascade) with valid values linking real entities, transitions only between its declared states, and an enum attribute holding those states (`mde verify`, Entity model row)?",
         "needs": [],
         "measures": [
           "Entity model"

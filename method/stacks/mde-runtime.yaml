@@ -1,0 +1,17 @@
+name: mde-runtime
+
+description: Prototype on the MDE runtime. The entity specs run as written against JSON data, with no backend code, SQL, or database to install; optional pages in React call the runtime's API.
+
+language: typescript
+runtime: node
+backend: mde-runtime   # the MDE runtime, served by the Workbench: no backend code
+api: mde-runtime       # GET /model, /data/<entity>; POST /api/<entity>/<operation>; see the Prototype Target
+database: json         # app/data/seed.json, loaded into app/data/data.json
+frontend: react        # step 4 only, optional; plain pages when none is wanted
+build: vite
+
+# The Targets in scope for a prototype on this stack (method/targets/).
+targets:
+  - business-requirements
+  - ui-design
+  - prototype

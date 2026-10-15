@@ -30,7 +30,7 @@ title: Verification — business-requirements
 
 ### Entity  `[feature: business-requirements-entity]`
 
-- `business-requirements-entity/entity-model` Does every entity have an attributes table with types of the Method and a key, its relationships as the table (Related, Role, Cardinality, Kind, Cascade) with valid values linking real entities, transitions only between its declared states, and an enum attribute holding those states (`mde verify`, Entity model row)?
+- `business-requirements-entity/entity-model` Does every entity have an attributes table with types of the Method and a key, a Display label naming its attributes (not the bare id), its relationships as the table (Related, Role, Cardinality, Kind, Cascade) with valid values linking real entities, transitions only between its declared states, and an enum attribute holding those states (`mde verify`, Entity model row)?
 - `business-requirements-entity/operations-used` Is every operation that changes something invoked by some use case (`mde verify`, Operations used row)?
 
 ### Role  `[feature: business-requirements-role]`
