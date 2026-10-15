@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Specification Metamodel View</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: light-dark(#f7f5f0, #17191f);
+      --ink: light-dark(#202126, #f4f1ea);
+      --muted: light-dark(#62666f, #b9bbc3);
+      --line: light-dark(#d6d1c6, #373b45);
+      --panel: light-dark(#fffdfa, #20242c);
+      --soft: light-dark(#ebe7dd, #2a2f38);
+      --req: light-dark(#d9534f, #ff867d);
+      --arch: light-dark(#2f7d6c, #6fc5ae);
+      --design: light-dark(#4867aa, #8fa8ff);
+      --work: light-dark(#9a6b20, #f2c96d);
+      --focus: light-dark(#202126, #f4f1ea);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    main {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 28px 0 36px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: end;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.05;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 21px;
+      line-height: 1.2;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      font-size: 15px;
+      line-height: 1.25;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      max-width: 780px;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .source {
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 8px;
+    }
+
+    button {
+      appearance: none;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: transparent;
+      color: var(--ink);
+      font: inherit;
+      font-size: 14px;
+      line-height: 1;
+      padding: 9px 12px;
+      cursor: pointer;
+    }
+
+    button[aria-pressed="true"] {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.8fr);
+      gap: 20px;
+      align-items: start;
+      margin-top: 20px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    .map-wrap {
+      margin-top: 14px;
+      overflow: hidden;
+    }
+
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .node {
+      cursor: pointer;
+    }
+
+    .node rect {
+      fill: var(--panel);
+      stroke: var(--line);
+      stroke-width: 1.2;
+      rx: 8;
+    }
+
+    .node[data-area="requirements"] rect,
+    .legend-dot.requirements {
+      stroke: var(--req);
+    }
+
+    .node[data-area="architecture"] rect,
+    .legend-dot.architecture {
+      stroke: var(--arch);
+    }
+
+    .node[data-area="design"] rect,
+    .legend-dot.design {
+      stroke: var(--design);
+    }
+
+    .node[data-active="true"] rect {
+      stroke: var(--focus);
+      stroke-width: 2.4;
+    }
+
+    .node[data-dimmed="true"] {
+      opacity: 0.34;
+    }
+
+    .node text {
+      fill: var(--ink);
+      font-size: 13px;
+      font-weight: 500;
+      pointer-events: none;
+    }
+
+    .node .kind {
+      fill: var(--muted);
+      font-size: 11px;
+      font-weight: 400;
+    }
+
+    .edge {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 1.3;
+      marker-end: url(#arrow);
+    }
+
+    .edge.emphasis {
+      stroke: var(--work);
+      stroke-width: 1.8;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .legend span {
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border: 2px solid;
+      border-radius: 50%;
+      background: transparent;
+    }
+
+    .detail {
+      display: grid;
+      gap: 12px;
+    }
+
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 4px 8px;
+      background: var(--soft);
+      color: var(--ink);
+      font-size: 12px;
+    }
+
+    .detail p,
+    .folder p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .detail-list {
+      display: grid;
+      gap: 7px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .detail-list li::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      margin-right: 8px;
+      border-radius: 50%;
+      background: var(--work);
+      vertical-align: 1px;
+    }
+
+    .folder-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .folder {
+      min-height: 100%;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    .folder ul {
+      display: grid;
+      gap: 8px;
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+      font-size: 14px;
+    }
+
+    .folder li {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      border-top: 1px solid var(--line);
+      padding-top: 8px;
+    }
+
+    code {
+      color: var(--ink);
+      font-family: "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+      font-size: 12px;
+    }
+
+    .type-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .type-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 12px;
+    }
+
+    .type-card[data-area="requirements"] {
+      border-top: 3px solid var(--req);
+    }
+
+    .type-card[data-area="architecture"] {
+      border-top: 3px solid var(--arch);
+    }
+
+    .type-card[data-area="design"] {
+      border-top: 3px solid var(--design);
+    }
+
+    .type-card p {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 900px) {
+      header,
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .source {
+        white-space: normal;
+      }
+
+      .folder-grid,
+      .type-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      main {
+        width: min(100vw - 20px, 1180px);
+        padding-top: 16px;
+      }
+
+      .panel,
+      .folder,
+      .type-card {
+        padding: 12px;
+      }
+
+      .folder-grid,
+      .type-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .node text {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>Specification Metamodel</h1>
+        <p class="subtitle">A shared grammar for application knowledge: requirements explain the business, architecture records durable engineering decisions, and design realizes both as application surfaces and contracts.</p>
+      </div>
+      <div class="source">Source: <code>mde/method/metamodel</code></div>
+    </header>
+
+    <nav class="controls" aria-label="Filter concept map">
+      <button type="button" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" data-filter="requirements" aria-pressed="false">Requirements</button>
+      <button type="button" data-filter="architecture" aria-pressed="false">Architecture</button>
+      <button type="button" data-filter="design" aria-pressed="false">Design</button>
+    </nav>
+
+    <section class="layout" aria-label="Metamodel map and selected concept">
+      <article class="panel">
+        <h2>Concept Relationships</h2>
+        <div class="legend" aria-label="Legend">
+          <span><i class="legend-dot requirements"></i>Requirements</span>
+          <span><i class="legend-dot architecture"></i>Architecture</span>
+          <span><i class="legend-dot design"></i>Design</span>
+          <span><i class="legend-dot"></i>Relationship</span>
+        </div>
+        <div class="map-wrap">
+          <svg viewBox="0 0 920 610" role="img" aria-labelledby="map-title map-desc">
+            <title id="map-title">Specification metamodel concept relationship map</title>
+            <desc id="map-desc">Domain decomposes into capabilities, which connect to roles, entities, use cases, workflows, and rules. Architecture constrains design. Pages, APIs, data models, and integrations realize requirements.</desc>
+            <defs>
+              <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"></path>
+              </marker>
+            </defs>
+
+            <path class="edge emphasis" data-from="domain" data-to="capability" d="M190 82 C230 92 270 102 310 112"></path>
+            <path class="edge" data-from="capability" data-to="role" d="M430 113 C468 91 507 69 548 58"></path>
+            <path class="edge" data-from="capability" data-to="entity" d="M430 138 C470 143 510 148 548 154"></path>
+            <path class="edge" data-from="capability" data-to="use-case" d="M374 164 C366 204 358 244 350 284"></path>
+            <path class="edge" data-from="capability" data-to="business-rule" d="M430 164 C476 207 522 250 568 294"></path>
+            <path class="edge" data-from="workflow" data-to="use-case" d="M190 324 C226 319 262 314 298 309"></path>
+            <path class="edge" data-from="workflow" data-to="business-rule" d="M190 344 C316 351 442 351 568 328"></path>
+            <path class="edge" data-from="use-case" data-to="api-contract" d="M354 340 C361 395 368 450 376 506"></path>
+            <path class="edge" data-from="entity" data-to="data-model" d="M632 192 C637 287 642 382 646 478"></path>
+            <path class="edge" data-from="architecture" data-to="api-contract" d="M188 515 C238 522 288 529 338 536"></path>
+            <path class="edge" data-from="architecture" data-to="data-model" d="M188 548 C330 570 472 570 614 538"></path>
+            <path class="edge" data-from="architecture" data-to="integration" d="M188 576 C404 620 620 620 800 548"></path>
+            <path class="edge" data-from="api-contract" data-to="integration" d="M414 532 C543 518 672 504 800 510"></path>
+
+            <g class="node" data-id="domain" data-area="requirements" transform="translate(40 48)">
+              <rect width="150" height="54"></rect>
+              <text x="14" y="24">Domain</text>
+              <text class="kind" x="14" y="42">overview file</text>
+            </g>
+            <g class="node" data-id="capability" data-area="requirements" transform="translate(310 110)">
+              <rect width="120" height="54"></rect>
+              <text x="14" y="24">Capability</text>
+              <text class="kind" x="14" y="42">business area</text>
+            </g>
+            <g class="node" data-id="role" data-area="requirements" transform="translate(548 36)">
+              <rect width="116" height="50"></rect>
+              <text x="14" y="23">Role</text>
+              <text class="kind" x="14" y="40">actor class</text>
+            </g>
+            <g class="node" data-id="entity" data-area="requirements" transform="translate(548 142)">
+              <rect width="126" height="54"></rect>
+              <text x="14" y="24">Entity</text>
+              <text class="kind" x="14" y="42">durable concept</text>
+            </g>
+            <g class="node" data-id="workflow" data-area="requirements" transform="translate(40 304)">
+              <rect width="150" height="54"></rect>
+              <text x="14" y="24">Workflow</text>
+              <text class="kind" x="14" y="42">multi-step process</text>
+            </g>
+            <g class="node" data-id="use-case" data-area="requirements" transform="translate(298 286)">
+              <rect width="110" height="54"></rect>
+              <text x="14" y="24">Use Case</text>
+              <text class="kind" x="14" y="42">goal flow</text>
+            </g>
+            <g class="node" data-id="business-rule" data-area="requirements" transform="translate(568 292)">
+              <rect width="144" height="54"></rect>
+              <text x="14" y="24">Business Rule</text>
+              <text class="kind" x="14" y="42">policy or constraint</text>
+            </g>
+            <g class="node" data-id="architecture" data-area="architecture" transform="translate(40 484)">
+              <rect width="148" height="96"></rect>
+              <text x="14" y="25">Architecture</text>
+              <text class="kind" x="14" y="44">decision</text>
+              <text class="kind" x="14" y="62">rationale</text>
+              <text class="kind" x="14" y="80">constraints</text>
+            </g>
+            <g class="node" data-id="api-contract" data-area="design" transform="translate(338 508)">
+              <rect width="128" height="54"></rect>
+              <text x="14" y="24">API Contract</text>
+              <text class="kind" x="14" y="42">operation</text>
+            </g>
+            <g class="node" data-id="data-model" data-area="design" transform="translate(614 508)">
+              <rect width="128" height="54"></rect>
+              <text x="14" y="24">Data Model</text>
+              <text class="kind" x="14" y="42">physical schema</text>
+            </g>
+            <g class="node" data-id="integration" data-area="design" transform="translate(800 488)">
+              <rect width="112" height="54"></rect>
+              <text x="14" y="24">Integration</text>
+              <text class="kind" x="14" y="42">external system</text>
+            </g>
+          </svg>
+        </div>
+      </article>
+
+      <aside class="panel detail" aria-live="polite">
+        <span id="detail-area" class="badge">Requirements</span>
+        <h2 id="detail-title">Domain</h2>
+        <p id="detail-description">The overall business domain the application serves: its purpose, scope, boundaries, and capabilities. One per application.</p>
+        <h3>Typical outline</h3>
+        <ul id="detail-outline" class="detail-list"></ul>
+        <h3>Canonical location</h3>
+        <p><code id="detail-path">specs/requirements/domain.md</code></p>
+      </aside>
+    </section>
+
+    <section class="folder-grid" aria-label="Canonical folder layout">
+      <article class="folder">
+        <h2>Requirements</h2>
+        <p>Business meaning, behavior, actors, rules, and durable concepts.</p>
+        <ul>
+          <li><span>Domain</span><code>requirements/domain.md</code></li>
+          <li><span>Glossary</span><code>requirements/glossary.md</code></li>
+          <li><span>Capabilities</span><code>requirements/capabilities</code></li>
+          <li><span>Entities</span><code>requirements/entities</code></li>
+          <li><span>Use cases</span><code>requirements/use-cases</code></li>
+          <li><span>Workflows</span><code>requirements/workflows</code></li>
+          <li><span>Rules</span><code>requirements/rules</code></li>
+          <li><span>Roles</span><code>requirements/roles</code></li>
+        </ul>
+      </article>
+
+      <article class="folder">
+        <h2>Architecture</h2>
+        <p>Durable engineering decisions and constraints that shape many changes.</p>
+        <ul>
+          <li><span>Overview</span><code>architecture/overview.md</code></li>
+          <li><span>Topics</span><code>architecture/*.md</code></li>
+          <li><span>Defaults</span><code>mde/method/defaults/architecture/*.md</code></li>
+        </ul>
+      </article>
+
+      <article class="folder">
+        <h2>Design</h2>
+        <p>Application-specific realization of requirements within architecture.</p>
+        <ul>
+          <li><span>API</span><code>design/api</code></li>
+          <li><span>Data</span><code>design/data</code></li>
+          <li><span>Integrations</span><code>design/integrations</code></li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="type-grid" aria-label="Concept type reference">
+      <article class="type-card" data-area="requirements"><h3>domain</h3><p>Application purpose, scope, boundaries, and capability map.</p></article>
+      <article class="type-card" data-area="requirements"><h3>diagram</h3><p>Requirements-level Mermaid use-case and logical data model diagrams.</p></article>
+      <article class="type-card" data-area="requirements"><h3>capability</h3><p>A meaningful business ability or area of responsibility.</p></article>
+      <article class="type-card" data-area="requirements"><h3>entity</h3><p>A durable business concept with identity, relationships, or lifecycle.</p></article>
+      <article class="type-card" data-area="requirements"><h3>use-case</h3><p>An actor or trigger using the system to achieve a goal.</p></article>
+      <article class="type-card" data-area="requirements"><h3>workflow</h3><p>An end-to-end process spanning multiple interactions.</p></article>
+      <article class="type-card" data-area="requirements"><h3>business-rule</h3><p>A policy, derivation, eligibility rule, or durable constraint.</p></article>
+      <article class="type-card" data-area="requirements"><h3>role</h3><p>A business responsibility relevant to permissions or use cases.</p></article>
+      <article class="type-card" data-area="architecture"><h3>architecture</h3><p>A durable engineering decision with rationale and consequences.</p></article>
+      <article class="type-card" data-area="design"><h3>page</h3><p>A UI screen with presented information, actions, states, and navigation.</p></article>
+      <article class="type-card" data-area="design"><h3>api-contract</h3><p>An endpoint or operation contract with request, response, and errors.</p></article>
+      <article class="type-card" data-area="design"><h3>data-model</h3><p>The physical persistence realization of business entities.</p></article>
+      <article class="type-card" data-area="design"><h3>integration</h3><p>An external-system connection with data, timing, failure, and security rules.</p></article>
+    </section>
+  </main>
+
+  <script>
+    const details = {
+      "domain": {
+        area: "Requirements",
+        title: "Domain",
+        description: "The overall business domain the application serves: its purpose, scope, boundaries, and capabilities. One per application.",
+        outline: ["Purpose", "Scope / boundaries", "Capability map", "Glossary when terms need definition"],
+        path: "specs/requirements/domain.md"
+      },
+      "capability": {
+        area: "Requirements",
+        title: "Capability",
+        description: "A meaningful business ability or area of responsibility supported by the application.",
+        outline: ["Purpose", "Scope", "Actors / roles", "Entities", "Use cases", "Rules", "Relationships to other capabilities"],
+        path: "specs/requirements/capabilities/*.md"
+      },
+      "entity": {
+        area: "Requirements",
+        title: "Entity",
+        description: "A durable business concept with identity, information, behavior, relationships, or lifecycle.",
+        outline: ["Purpose", "Attributes", "Relationships", "Operations", "States", "Rules"],
+        path: "specs/requirements/entities/*.md"
+      },
+      "use-case": {
+        area: "Requirements",
+        title: "Use Case",
+        description: "A structured behavioral specification describing how an actor or external trigger uses the system to achieve a meaningful goal.",
+        outline: ["Goal", "Actors", "Trigger", "Preconditions", "Flow", "Alternatives / conditions", "Outcome", "Related pages"],
+        path: "specs/requirements/use-cases/*.md"
+      },
+      "workflow": {
+        area: "Requirements",
+        title: "Workflow",
+        description: "A durable end-to-end process or lifecycle that sequences multiple use cases, actors, and states over time.",
+        outline: ["Purpose", "Trigger", "Participants / roles", "Steps", "Resulting states / transitions", "Exceptions", "Related rules"],
+        path: "specs/requirements/workflows/*.md"
+      },
+      "business-rule": {
+        area: "Requirements",
+        title: "Business Rule",
+        description: "A durable business constraint, derivation, authorization, eligibility condition, or policy.",
+        outline: ["Statement", "Applies to", "Condition", "Constraint / result", "Exceptions", "Rationale or source"],
+        path: "specs/requirements/rules/*.md"
+      },
+      "role": {
+        area: "Requirements",
+        title: "Role",
+        description: "A business responsibility or actor classification relevant to permissions or use cases.",
+        outline: ["Purpose", "Responsibilities", "Permissions / constraints", "Related capabilities", "Related use cases"],
+        path: "specs/requirements/roles/*.md"
+      },
+      "architecture": {
+        area: "Architecture",
+        title: "Architecture",
+        description: "Durable engineering decisions and constraints that affect multiple features, components, or future changes.",
+        outline: ["Decision or principle", "Rationale", "Constraints / rules", "Consequences", "Exceptions or unresolved alternatives"],
+        path: "specs/architecture/*.md"
+      },
+      "api-contract": {
+        area: "Design",
+        title: "API Contract",
+        description: "An application-specific API endpoint or operation contract.",
+        outline: ["Purpose", "Consumers", "Endpoint / operation", "Request", "Response", "Validation", "Errors", "Authorization"],
+        path: "specs/design/api/*.md"
+      },
+      "integration": {
+        area: "Design",
+        title: "Integration",
+        description: "An application-specific integration with an external system.",
+        outline: ["Purpose", "External system", "Direction and protocol", "Data exchanged", "Trigger / timing", "Failure behavior", "Security / credentials"],
+        path: "specs/design/integrations/*.md"
+      },
+      "data-model": {
+        area: "Design",
+        title: "Data Model",
+        description: "The physical or relational realization of business entities and relationships within the chosen persistence technology.",
+        outline: ["Purpose", "Tables", "Relationships", "Migration rules", "Notes"],
+        path: "specs/design/data/*.md"
+      }
+    };
+
+    const nodes = Array.from(document.querySelectorAll(".node"));
+    const edges = Array.from(document.querySelectorAll(".edge"));
+    const buttons = Array.from(document.querySelectorAll("[data-filter]"));
+    const areaEl = document.getElementById("detail-area");
+    const titleEl = document.getElementById("detail-title");
+    const descriptionEl = document.getElementById("detail-description");
+    const outlineEl = document.getElementById("detail-outline");
+    const pathEl = document.getElementById("detail-path");
+
+    function setDetail(id) {
+      const detail = details[id];
+      if (!detail) return;
+      areaEl.textContent = detail.area;
+      titleEl.textContent = detail.title;
+      descriptionEl.textContent = detail.description;
+      pathEl.textContent = detail.path;
+      outlineEl.replaceChildren(...detail.outline.map((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        return li;
+      }));
+      nodes.forEach((node) => node.dataset.active = node.dataset.id === id ? "true" : "false");
+      edges.forEach((edge) => {
+        edge.classList.toggle("emphasis", edge.dataset.from === id || edge.dataset.to === id);
+      });
+    }
+
+    function setFilter(area) {
+      buttons.forEach((button) => {
+        button.setAttribute("aria-pressed", button.dataset.filter === area ? "true" : "false");
+      });
+      nodes.forEach((node) => {
+        node.dataset.dimmed = area !== "all" && node.dataset.area !== area ? "true" : "false";
+      });
+    }
+
+    nodes.forEach((node) => {
+      node.addEventListener("click", () => setDetail(node.dataset.id));
+      node.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          setDetail(node.dataset.id);
+        }
+      });
+      node.setAttribute("role", "button");
+      node.setAttribute("aria-label", details[node.dataset.id].title);
+      node.setAttribute("tabindex", "0");
+    });
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => setFilter(button.dataset.filter));
+    });
+
+    // Allow deep-linking to a specific concept type via #<type-id> (e.g.
+    // metamodel-view.html#entity) -- the Workbench's spec-type badge links
+    // here using the file's own `type:` frontmatter value, which already
+    // matches these node ids one-to-one.
+    const requestedId = (window.location.hash || "").slice(1);
+    setDetail(requestedId && details[requestedId] ? requestedId : "domain");
+    window.addEventListener("hashchange", () => {
+      const id = (window.location.hash || "").slice(1);
+      if (id && details[id]) setDetail(id);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+name: nest-carbon
+
+description: NestJS backend with a React + IBM Carbon Design System frontend.
+
+language: typescript
+runtime: node
+backend: nestjs
+api: rest-json
+database: postgres
+frontend: react
+ui: carbon            # UI profile: carbon-ui.md
+build: vite
+
+testing:
+  unit: vitest
+  browser: playwright
+
+# The Targets in scope for an application on this stack (method/targets/); the application may drop what it does not use.
+targets:
+  - business-requirements
+  - architecture
+  - application-design
+  - api-design
+  - ui-design
+  - persistence-design
+  - api
+  - persistence
+  - server
+  - web-ui
+  - testing
+  - evidence
+  - documentation
+  - deployment
+  - dev-setup
+  - run-app

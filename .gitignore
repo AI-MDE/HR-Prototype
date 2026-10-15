@@ -1,0 +1,5 @@
+# Runtime-generated (created on first save/request; see framework/workbench context.ts)
+/logs/
+
+# This machine's configuration; .env.example is committed
+.env

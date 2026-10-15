@@ -1,0 +1,19 @@
+{
+  "type": "design-vocabulary",
+  "description": "The words a capability design uses that are not Features (metamodel/design/design-catalog.md, docs/MDE-Unified-Features-Proposal.md section 8): the verbs of an operation, and the model properties of an entity. Defined once by the Method; an application's catalog does not redefine them.",
+  "operation": {
+    "sets": { "description": "The operation fills these values itself, such as when a request was submitted.", "options": { "fields": "attributes, as Entity.attribute when on another entity", "when": "a condition" } },
+    "records": { "description": "What the user gives for this operation, such as a reason, is kept with the status history.", "options": { "fields": "the inputs", "in": "where they are kept" } },
+    "delegates": { "description": "This operation also carries out another one, with that one's checks, as one change.", "options": { "to": "Entity.operation", "when": "a condition, if it applies only sometimes" } },
+    "locks": { "description": "Related records are held still while the operation checks and writes.", "options": { "entities": "the entities whose rows are locked" } },
+    "decision": { "description": "One action with several outcomes, each with its own result; some outcomes need a reason.", "options": { "values": "the outcomes", "reasonRequiredFor": "the outcomes that need a reason" } },
+    "default": { "description": "An optional input that is filled in when left empty.", "options": { "field": "the input", "value": "its default" }, "aliases": ["input.default"] },
+    "internal": { "description": "Only the system does this, as part of other operations; it is never exposed.", "options": {} }
+  },
+  "entity": {
+    "unique": { "description": "No two records may share these values.", "options": { "columns": "list of column lists", "where": "predicate for a partial index" } },
+    "index": { "description": "The lists and work queues people use stay fast.", "options": { "columns": "list of column lists" } },
+    "check": { "description": "The database itself refuses a record that breaks this condition.", "options": { "expression": "boolean expression" } },
+    "label": { "description": "How a record is named to people, everywhere it appears.", "options": { "attributes": "the attributes, in order" }, "aliases": ["display.label"] }
+  }
+}

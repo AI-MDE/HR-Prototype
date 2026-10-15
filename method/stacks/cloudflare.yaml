@@ -1,0 +1,33 @@
+name: cloudflare
+
+description: Cloudflare-oriented web application starting point.
+
+language: typescript
+runtime: cloudflare-workers
+backend: workers
+api: http-json
+database: d1
+frontend: web
+
+testing:
+  unit: vitest
+  browser: playwright
+
+# The Targets in scope for an application on this stack (method/targets/); the application may drop what it does not use.
+targets:
+  - business-requirements
+  - architecture
+  - application-design
+  - api-design
+  - ui-design
+  - persistence-design
+  - api
+  - persistence
+  - server
+  - web-ui
+  - testing
+  - evidence
+  - documentation
+  - deployment
+  - dev-setup
+  - run-app

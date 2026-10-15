@@ -1,0 +1,2107 @@
+[
+  {
+    "id": "api",
+    "appliesWhen": [
+      "the work creates or changes endpoints or route handlers",
+      "a capability declares or changes its API boundary"
+    ],
+    "title": "API",
+    "requires": [],
+    "stage": "backend",
+    "needs": [
+      "backend"
+    ],
+    "inputs": [],
+    "outputs": [
+      {
+        "output": "Routes, services, types per capability",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "per implemented capability"
+      },
+      {
+        "output": "Rule enforcement",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "per business rule"
+      },
+      {
+        "output": "Authentication endpoints",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "when authentication is in scope"
+      },
+      {
+        "output": "`openapi.yaml`",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "api-built",
+        "title": "API built",
+        "proves": "Everything the server realizes (operations, use cases, rules, Features) has its code.",
+        "needs": null
+      }
+    ],
+    "checks": [
+      {
+        "id": "api-checks/endpoints-live",
+        "alias": "api-checks.1",
+        "feature": "api-checks",
+        "text": "Is every endpoint live (persists, with a data-store path in the log) and every business rule enforced (violation rejected and not persisted)?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "business-rule-responses/rule-identified",
+        "alias": "business-rule-responses.1",
+        "feature": "business-rule-responses",
+        "text": "Do business-rule failures identify the violated rule in a structured field, with a test that asserts on that field?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "capability-api-boundary/every-operation-routed",
+        "alias": "capability-api-boundary.1",
+        "feature": "capability-api-boundary",
+        "text": "Does every entity operation, including lifecycle operations, have a route handler marked `// MDE: <entity>.<op>`, and the same operation set a test scenario?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "openapi-contract/openapi-generated",
+        "alias": "openapi-contract.1",
+        "feature": "openapi-contract",
+        "text": "Is `openapi.yaml` generated from the real routes, with a pinned OpenAPI version, and is the implementation validated against it?",
+        "needs": [],
+        "measures": []
+      }
+    ],
+    "path": "app/api.md"
+  },
+  {
+    "id": "api-design",
+    "appliesWhen": [
+      "the work designs a capability's operations or the access that governs them",
+      "the work exposes an operation to an outside consumer"
+    ],
+    "title": "API design",
+    "requires": [],
+    "stage": "design",
+    "needs": [
+      "backend"
+    ],
+    "inputs": [],
+    "outputs": [
+      {
+        "output": "Operations and access",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "per entity"
+      },
+      {
+        "output": "API Contract",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "for an operation exposed to an outside consumer"
+      }
+    ],
+    "evidence": [],
+    "checks": [],
+    "path": "design/api-design.md"
+  },
+  {
+    "id": "application-design",
+    "appliesWhen": [
+      "the work designs how requirements are realized: operations, rules, aspects, use cases, integrations, or a capability as a whole",
+      "the work writes or changes an entity's design",
+      "the work creates or changes sample data",
+      "the work checks that requirements and design are complete enough to build"
+    ],
+    "title": "Application design",
+    "requires": [],
+    "stage": "design",
+    "needs": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "output": "Design catalog",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "with the first design; a Feature added when a design first needs it"
+      },
+      {
+        "output": "Capability design",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "per capability"
+      },
+      {
+        "output": "Entity design",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "per entity whose operations need something decided"
+      },
+      {
+        "output": "Authorization",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "whenever a use case's actors or invoked operations change"
+      },
+      {
+        "output": "Capability design index",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "when the application is organized by capability"
+      },
+      {
+        "output": "Sample data",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "for the scope being designed"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "okf-design",
+        "title": "OKF compliance",
+        "proves": "Every design Spec is as the [OKF profile](../../metamodel/okf.md) requires: front matter naming a concept type the Meta-model defines, the reserved files, semantic identifiers, and links that resolve.",
+        "needs": null
+      },
+      {
+        "id": "design",
+        "title": "Design",
+        "proves": "The capability designs apply only known Features and design vocabulary, on real entities and operations.",
+        "needs": null
+      },
+      {
+        "id": "features",
+        "title": "Features",
+        "proves": "Every optional Feature applied is allowed where it is applied, realized, implemented once, and its promises proven on each object that applies it.",
+        "needs": null
+      },
+      {
+        "id": "use-cases",
+        "title": "Use cases",
+        "proves": "Each use case is more than one operation, and authorization is the one they derive.",
+        "needs": null
+      }
+    ],
+    "checks": [
+      {
+        "id": "design-in-catalog-terms/designs-use-catalog",
+        "alias": "design-in-catalog-terms.1",
+        "feature": "design-in-catalog-terms",
+        "text": "Does every capability design apply only known Features and design vocabulary, each to what it applies to, with only its options, and only where its `appliedIn` allows, on entities and operations the requirements declare, delegating only to real operations (`mde verify`, Design row)?",
+        "needs": [],
+        "measures": [
+          "Design"
+        ]
+      },
+      {
+        "id": "engineering-for-reuse/features-implemented-once",
+        "alias": "engineering-for-reuse.1",
+        "feature": "engineering-for-reuse",
+        "text": "Is every Feature the application applies implemented once, with no second implementation (`mde verify`, Reuse row), and is every promise proven by a passing scenario tagged `@feature:<id>/<promise>` on each object that applies it (`mde verify`, Features row)?",
+        "needs": [],
+        "measures": [
+          "Reuse",
+          "Features"
+        ]
+      },
+      {
+        "id": "engineering-for-reuse/model-declared-once",
+        "alias": "engineering-for-reuse.2",
+        "feature": "engineering-for-reuse",
+        "text": "Is each entity's model declared once, and is duplicated code below the threshold the Reuse row reports?",
+        "needs": [],
+        "measures": []
+      }
+    ],
+    "path": "design/application-design.md"
+  },
+  {
+    "id": "architecture",
+    "appliesWhen": [
+      "the work selects, resolves, or changes the application's architecture or technology stack",
+      "the work adds a component, layer, boundary, or cross-cutting mechanism",
+      "the work changes code in a way that could cross a boundary the architecture sets (checked here; the code itself is checked under the api, server, and persistence Targets)"
+    ],
+    "title": "Architecture",
+    "requires": [],
+    "stage": "architecture",
+    "needs": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "output": "Architecture overview",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      },
+      {
+        "output": "Topic specifications",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "when a topic outgrows the overview"
+      },
+      {
+        "output": "Targets in scope",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      },
+      {
+        "output": "Architecture diagram",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      },
+      {
+        "output": "Interaction diagram",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "with the architecture diagram; a scenario for each boundary that matters"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "architecture",
+        "title": "Architecture audit",
+        "proves": "A second agent judged each architecture decision: resolved, traceable to a need, and consistent with the stack and the other decisions.",
+        "needs": null
+      },
+      {
+        "id": "architecture-overview",
+        "title": "Architecture overview",
+        "proves": "The architecture names a stack of the Method and Targets that exist, with nothing left as a placeholder.",
+        "needs": null
+      },
+      {
+        "id": "architecture-decisions",
+        "title": "Architecture decisions",
+        "proves": "Every architecture decision is stated, none left as an empty heading.",
+        "needs": null
+      },
+      {
+        "id": "okf-architecture",
+        "title": "OKF compliance",
+        "proves": "Every architecture Spec is as the [OKF profile](../../metamodel/okf.md) requires: front matter naming a concept type the Meta-model defines, the reserved files, semantic identifiers, and links that resolve.",
+        "needs": null
+      },
+      {
+        "id": "architecture-diagrams",
+        "title": "Architecture diagrams",
+        "proves": "The architecture and interaction diagrams are delivered, and those rendered from DOT are current.",
+        "needs": null
+      }
+    ],
+    "checks": [
+      {
+        "id": "architecture-content/decisions-stated",
+        "alias": "architecture-content.1",
+        "feature": "architecture-content",
+        "text": "Is every architecture decision (each leaf section) stated, none left as an empty heading (`mde verify`, Architecture decisions row)?",
+        "needs": [],
+        "measures": [
+          "Architecture decisions"
+        ]
+      },
+      {
+        "id": "architecture-diagrams/architecture-interaction-diagrams",
+        "alias": "architecture-diagrams.1",
+        "feature": "architecture-diagrams",
+        "text": "Are the architecture and interaction diagrams delivered with the architecture, in `specs/architecture/diagrams/` (`mde verify`, Architecture diagrams row)?",
+        "needs": [],
+        "measures": [
+          "Architecture diagrams"
+        ]
+      },
+      {
+        "id": "architecture-resolve-selections-into-specs/overview-resolved",
+        "alias": "architecture-resolve-selections-into-specs.1",
+        "feature": "architecture-resolve-selections-into-specs",
+        "text": "Does the overview name a stack of the Method and Targets the Method has, with no placeholder (TBD, TODO, \"not yet decided\") left in the architecture (`mde verify`, Architecture overview row)?",
+        "needs": [],
+        "measures": [
+          "Architecture overview"
+        ]
+      }
+    ],
+    "path": "design/architecture.md"
+  },
+  {
+    "id": "business-requirements",
+    "appliesWhen": [
+      "the work performs business analysis, or defines or refines requirements",
+      "the work defines or changes capabilities, entities, use cases, business rules, roles, business events, workflows, or the glossary",
+      "the work imports or reconciles upstream business specifications"
+    ],
+    "title": "Business requirements",
+    "requires": [],
+    "stage": "requirements",
+    "needs": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "output": "Domain overview",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      },
+      {
+        "output": "Capability",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always: every ABE lives under one"
+      },
+      {
+        "output": "ABE (a folder, with its Primary Entity)",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      },
+      {
+        "output": "Entity",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      },
+      {
+        "output": "Use Case",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      },
+      {
+        "output": "Business Rule",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      },
+      {
+        "output": "Role",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      },
+      {
+        "output": "Business Event",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "when events are in scope"
+      },
+      {
+        "output": "Workflow",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "when a process spans several use cases"
+      },
+      {
+        "output": "Glossary",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      },
+      {
+        "output": "Use-case diagram, conceptual data model diagram",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      },
+      {
+        "output": "Logical data model diagram",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      },
+      {
+        "output": "Use-case behavior diagram",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      },
+      {
+        "output": "State-transition diagram",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "when it has states"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "okf-requirements",
+        "title": "OKF compliance",
+        "proves": "Every requirement Spec is as the [OKF profile](../../metamodel/okf.md) requires: front matter naming a concept type the Meta-model defines, the reserved files, semantic identifiers, and links that resolve.",
+        "needs": null
+      },
+      {
+        "id": "diagrams",
+        "title": "Requirements diagrams",
+        "proves": "The diagrams the Method requires of the requirements are delivered (data models, use cases, states), and those rendered from DOT are current.",
+        "needs": null
+      },
+      {
+        "id": "entity-placement",
+        "title": "Entity placement",
+        "proves": "Every entity is in an ABE folder under its capability, each ABE has its Primary Entity, and entity names are unique.",
+        "needs": null
+      },
+      {
+        "id": "entity-model",
+        "title": "Entity model",
+        "proves": "Each entity has typed attributes and a key, its relationships as the table linking real entities, and transitions between its declared states, held by an enum attribute.",
+        "needs": null
+      },
+      {
+        "id": "requirement-links",
+        "title": "Requirement links",
+        "proves": "Every link inside the requirements resolves.",
+        "needs": null
+      },
+      {
+        "id": "use-case-references",
+        "title": "Use case references",
+        "proves": "Every use case names roles that exist as its actors, and invokes operations its entities declare.",
+        "needs": null
+      },
+      {
+        "id": "operations-used",
+        "title": "Operations used",
+        "proves": "Every operation that changes something is invoked by some use case.",
+        "needs": null
+      },
+      {
+        "id": "roles",
+        "title": "Roles",
+        "proves": "Roles are kept at the top level, each the actor of some use case.",
+        "needs": null
+      },
+      {
+        "id": "business-rules",
+        "title": "Business rules",
+        "proves": "Each rule of its own file is linked from an entity it governs, and each rule id is used once.",
+        "needs": null
+      },
+      {
+        "id": "capabilities",
+        "title": "Capabilities",
+        "proves": "Each capability's overview lists its ABEs, its own first, and links its workflows.",
+        "needs": null
+      },
+      {
+        "id": "domain",
+        "title": "Domain",
+        "proves": "The Domain's Purpose and Scope are written.",
+        "needs": null
+      }
+    ],
+    "checks": [
+      {
+        "id": "business-requirements-abe/entity-placement",
+        "alias": "business-requirements-abe.1",
+        "feature": "business-requirements-abe",
+        "text": "Is every entity in an ABE folder under its home capability, with one Primary Entity per ABE (named after its folder), and is every entity name unique (`mde verify`, Entity placement row)?",
+        "needs": [],
+        "measures": [
+          "Entity placement"
+        ]
+      },
+      {
+        "id": "business-requirements-business-rule/rule-ids",
+        "alias": "business-requirements-business-rule.1",
+        "feature": "business-requirements-business-rule",
+        "text": "Is every rule of its own file linked from an entity it governs, and every rule id used once (`mde verify`, Business rules row)?",
+        "needs": [],
+        "measures": [
+          "Business rules"
+        ]
+      },
+      {
+        "id": "business-requirements-capability/overview-lists",
+        "alias": "business-requirements-capability.1",
+        "feature": "business-requirements-capability",
+        "text": "Does each capability's overview list the ABEs it uses, its own first, and link each of its workflows (`mde verify`, Capabilities row)?",
+        "needs": [],
+        "measures": [
+          "Capabilities"
+        ]
+      },
+      {
+        "id": "business-requirements-domain/domain-written",
+        "alias": "business-requirements-domain.1",
+        "feature": "business-requirements-domain",
+        "text": "Are the Domain's Purpose and Scope written, not left as \"Not yet described\" (`mde verify`, Domain row)?",
+        "needs": [],
+        "measures": [
+          "Domain"
+        ]
+      },
+      {
+        "id": "business-requirements-domain/links-resolve",
+        "alias": "business-requirements-domain.2",
+        "feature": "business-requirements-domain",
+        "text": "Does every link inside the requirements resolve (`mde verify`, Requirement links row)?",
+        "needs": [],
+        "measures": [
+          "Requirement links"
+        ]
+      },
+      {
+        "id": "business-requirements-entity/entity-model",
+        "alias": "business-requirements-entity.1",
+        "feature": "business-requirements-entity",
+        "text": "Does every entity have an attributes table with types of the Method and a key, its relationships as the table (Related, Role, Cardinality, Kind, Cascade) with valid values linking real entities, transitions only between its declared states, and an enum attribute holding those states (`mde verify`, Entity model row)?",
+        "needs": [],
+        "measures": [
+          "Entity model"
+        ]
+      },
+      {
+        "id": "business-requirements-entity/operations-used",
+        "alias": "business-requirements-entity.2",
+        "feature": "business-requirements-entity",
+        "text": "Is every operation that changes something invoked by some use case (`mde verify`, Operations used row)?",
+        "needs": [],
+        "measures": [
+          "Operations used"
+        ]
+      },
+      {
+        "id": "business-requirements-role/roles",
+        "alias": "business-requirements-role.1",
+        "feature": "business-requirements-role",
+        "text": "Are roles kept only at the top level (`specs/requirements/roles/`), each the actor of some use case (`mde verify`, Roles row)?",
+        "needs": [],
+        "measures": [
+          "Roles"
+        ]
+      },
+      {
+        "id": "business-requirements-use-case/use-case-references",
+        "alias": "business-requirements-use-case.1",
+        "feature": "business-requirements-use-case",
+        "text": "Does every use case name roles that exist as its actors, and invoke only operations its entities declare (`mde verify`, Use case references row)?",
+        "needs": [],
+        "measures": [
+          "Use case references"
+        ]
+      }
+    ],
+    "path": "requirements/business-requirements.md"
+  },
+  {
+    "id": "deployment",
+    "appliesWhen": [
+      "a deployment is in scope: the work selects, creates, or changes how the application is deployed"
+    ],
+    "title": "Deployment",
+    "requires": [],
+    "stage": "release",
+    "needs": [
+      "deployment"
+    ],
+    "inputs": [],
+    "outputs": [
+      {
+        "output": "Deployment configuration",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      },
+      {
+        "output": "Operations guide",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      }
+    ],
+    "evidence": [],
+    "checks": [
+      {
+        "id": "production-runtime/runtime-exercised",
+        "alias": "production-runtime.1",
+        "feature": "production-runtime",
+        "text": "Was the production-like runtime actually exercised (build, start, migrate, health, smoke, backup and restore, rollback, teardown) where its engine is available?",
+        "needs": [],
+        "measures": []
+      }
+    ],
+    "path": "app/deployment.md"
+  },
+  {
+    "id": "dev-setup",
+    "appliesWhen": [
+      "the work sets up or changes the development environment, its dependencies, or its required services",
+      "the work is the first to run the application on a machine"
+    ],
+    "title": "Development setup",
+    "requires": [],
+    "stage": "skeleton",
+    "needs": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "output": "`install-dev` script",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      },
+      {
+        "output": "`env-check.log`",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      },
+      {
+        "output": "`db-connect.log`",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "when the application has a database"
+      },
+      {
+        "output": "`migrate.log`",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "when the application has migrations"
+      },
+      {
+        "output": "`health.log`, `smoke.log`, `teardown.log`",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "configuration",
+        "title": "Configuration",
+        "proves": "Every .env key is in .env.example, .env is not tracked, and no port or secret is written in source.",
+        "needs": null
+      },
+      {
+        "id": "readiness-logs",
+        "title": "Readiness logs",
+        "proves": "Each readiness log is present and shows success.",
+        "needs": null
+      },
+      {
+        "id": "imports-declared",
+        "title": "Imports declared",
+        "proves": "Every import is a declared dependency.",
+        "needs": null
+      }
+    ],
+    "checks": [
+      {
+        "id": "dev-setup-readiness-logs/readiness-logs-present",
+        "alias": "dev-setup-readiness-logs.1",
+        "feature": "dev-setup-readiness-logs",
+        "text": "Are all the required readiness logs present, and does each show success (a live connection and round trip, a passing health check with the right name, exit 0), with none showing an error (`mde verify`, Readiness logs row)?",
+        "needs": [],
+        "measures": [
+          "Readiness logs"
+        ]
+      },
+      {
+        "id": "dev-setup-readiness-logs/checks-ran-after-connect",
+        "alias": "dev-setup-readiness-logs.2",
+        "feature": "dev-setup-readiness-logs",
+        "text": "Once `db-connect.log` showed a live connection, did every later environment-dependent check actually run?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "env-contract/env-declares-source",
+        "alias": "env-contract.1",
+        "feature": "env-contract",
+        "text": "Does `.env` declare `SERVER_SOURCE` and `API_BASE`, and, with the application's own backend, is `SERVER_SOURCE` `api` with no frontend code calling the MDE runtime (`mde verify`, Server source row)?",
+        "needs": [],
+        "measures": [
+          "Server source"
+        ]
+      },
+      {
+        "id": "env-contract/config-declared",
+        "alias": "env-contract.2",
+        "feature": "env-contract",
+        "text": "Is every `.env` key listed in `.env.example`, `.env` not tracked by git, and no port or secret written in source, scripts, or tool configuration (`mde verify`, Configuration row)?",
+        "needs": [],
+        "measures": [
+          "Configuration"
+        ]
+      },
+      {
+        "id": "install-dev/imports-declared",
+        "alias": "install-dev.1",
+        "feature": "install-dev",
+        "text": "Does every import resolve to a declared dependency (`mde verify`, Imports declared row)?",
+        "needs": [],
+        "measures": [
+          "Imports declared"
+        ]
+      }
+    ],
+    "path": "app/dev-setup.md"
+  },
+  {
+    "id": "documentation",
+    "appliesWhen": [
+      "the work implements or changes behavior a user, administrator, or operator sees",
+      "the work changes configuration, deployment, or an API contract",
+      "the work prepares a release"
+    ],
+    "title": "Documentation",
+    "requires": [],
+    "stage": "docs",
+    "needs": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "output": "User guide",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "when there is a user interface"
+      },
+      {
+        "output": "Admin guide",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "when the application has administration functions"
+      },
+      {
+        "output": "Operations guide",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "when a deployment is in scope"
+      },
+      {
+        "output": "Release notes",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "when a release is prepared"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "documentation",
+        "title": "Documentation",
+        "proves": "The guides that ship with the product: for users, administrators, and operators, as they apply.",
+        "needs": null
+      }
+    ],
+    "checks": [],
+    "path": "app/documentation.md"
+  },
+  {
+    "id": "evidence",
+    "appliesWhen": [
+      "the selected Strategy calls for verification or an Evidence Package for the current Goal",
+      "the work produces test reports, coverage, or audit reports",
+      "the work prepares a release"
+    ],
+    "title": "Evidence",
+    "requires": [],
+    "stage": "testing",
+    "needs": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "output": "Evidence Package",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "when the active Strategy requires it"
+      },
+      {
+        "output": "Check reports",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "per `mde verify` run"
+      },
+      {
+        "output": "Test reports, logs, screenshots",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "per test suite run, replacing the previous run's"
+      },
+      {
+        "output": "Coverage of the API",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "once anything is built"
+      },
+      {
+        "output": "Coverage of the pages",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "once the application has pages"
+      },
+      {
+        "output": "Audit reports",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "when [`mde audit`](../../commands/audit.md) audits the Target"
+      },
+      {
+        "output": "Architecture audit",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "when [`mde audit`](../../commands/audit.md) audits the architecture"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "audit",
+        "title": "Audit report",
+        "proves": "A second agent judged the Target's Audit concerns, each with a verdict and a witness.",
+        "needs": "per-target"
+      }
+    ],
+    "checks": [
+      {
+        "id": "code-coverage-matrix/coverage-instrumented",
+        "alias": "code-coverage-matrix.1",
+        "feature": "code-coverage-matrix",
+        "text": "Is code coverage instrumented for real, with the instrumented runs named, the matrix rows from the Specs, and exclusions listed?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "end-to-end-tests/page-operations-tested",
+        "alias": "end-to-end-tests.1",
+        "feature": "end-to-end-tests",
+        "text": "Is every page operation performed by a passing browser scenario (`mde verify`, Operations tested through pages: every operation, not some), and every page of the inventory used by one (Pages tested)?",
+        "needs": [],
+        "measures": [
+          "Operations tested through pages"
+        ]
+      },
+      {
+        "id": "end-to-end-tests/screenshots-left",
+        "alias": "end-to-end-tests.2",
+        "feature": "end-to-end-tests",
+        "text": "Did every browser scenario leave its screenshots (`mde verify`, Screenshots: one set per scenario)?",
+        "needs": [],
+        "measures": [
+          "Screenshots"
+        ]
+      },
+      {
+        "id": "end-to-end-tests/use-cases-walked",
+        "alias": "end-to-end-tests.3",
+        "feature": "end-to-end-tests",
+        "text": "Does every use case with a screen have a scenario walking its main flow in a browser, with screenshots after each step and at failure?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "end-to-end-tests/e2e-report-generated",
+        "alias": "end-to-end-tests.4",
+        "feature": "end-to-end-tests",
+        "text": "Is `evidence/tests/e2e.md` generated by the run, each step with its screenshot, and is the run instrumented for coverage?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "evidence-architecture-audit/audits-counted",
+        "alias": "evidence-architecture-audit.1",
+        "feature": "evidence-architecture-audit",
+        "text": "Does the Evidence Package count each Audit Report from its summary line, and the decisions the Architecture Audit covers?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "evidence-attachment/package-identifies-goal",
+        "alias": "evidence-attachment.1",
+        "feature": "evidence-attachment",
+        "text": "If the Strategy requires Evidence, does `evidence/README.md` identify the Goal and assessed revision, with every selected check's status explicit and no failed, missing, or unexecuted check shown as passed?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "evidence-attachment/evidence-only-linked",
+        "alias": "evidence-attachment.2",
+        "feature": "evidence-attachment",
+        "text": "Does `evidence/` hold only the page and the details it links to?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "evidence-test-coverage/requirements-listed",
+        "alias": "evidence-test-coverage.1",
+        "feature": "evidence-test-coverage",
+        "text": "Does test coverage list every requirement in scope, with uncovered ones visible and covered ones backed by a passing scenario?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "use-case-execution-report/reports-current",
+        "alias": "use-case-execution-report.1",
+        "feature": "use-case-execution-report",
+        "text": "Do reports come from the current run, with failures and not-executed scenarios visible?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "use-case-execution-report/not-run-shown",
+        "alias": "use-case-execution-report.2",
+        "feature": "use-case-execution-report",
+        "text": "Does every test report show not-run and skipped scenarios as such, and does every scenario name the spec ids it proves?",
+        "needs": [],
+        "measures": []
+      }
+    ],
+    "path": "app/evidence.md"
+  },
+  {
+    "id": "integration",
+    "appliesWhen": [
+      "the work connects the application to an external system, or changes an existing connection",
+      "the work converts an existing or external dataset into the application"
+    ],
+    "title": "Integration",
+    "requires": [],
+    "stage": "backend",
+    "needs": [
+      "integration"
+    ],
+    "inputs": [],
+    "outputs": [
+      {
+        "output": "Integration specification",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "per in-scope external system"
+      },
+      {
+        "output": "Adapter",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "per external system"
+      },
+      {
+        "output": "Contract and failure-path tests",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "per external system"
+      }
+    ],
+    "evidence": [],
+    "checks": [
+      {
+        "id": "contract-and-failure-tests/failure-tests-run",
+        "alias": "contract-and-failure-tests.1",
+        "feature": "contract-and-failure-tests",
+        "text": "Do contract and failure-path tests exist and run, with captured output and accurately labeled evidence?",
+        "needs": [],
+        "measures": []
+      }
+    ],
+    "path": "app/integration.md"
+  },
+  {
+    "id": "method-change",
+    "appliesWhen": [
+      "the work changes anything under `method/`, or documentation that explains it",
+      "the work brings an incoming file (an import, an existing modification) into the Method"
+    ],
+    "title": "Method change",
+    "requires": [],
+    "stage": "any",
+    "needs": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "output": "Version",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "every change"
+      },
+      {
+        "output": "Changelog entry",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "every change"
+      }
+    ],
+    "evidence": [],
+    "checks": [
+      {
+        "id": "method-change-checks/references-resolve",
+        "alias": "method-change-checks.1",
+        "feature": "method-change-checks",
+        "text": "Do all references resolve, and were the indexes and documentation updated with the definitions?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "method-internal-consistency/types-shape-only",
+        "alias": "method-internal-consistency.1",
+        "feature": "method-internal-consistency",
+        "text": "Does every type definition stay shape only (the contract test passes), and does each rule live in exactly one layer?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "method-internal-consistency/version-bumped",
+        "alias": "method-internal-consistency.2",
+        "feature": "method-internal-consistency",
+        "text": "Were the Method's version and changelog (and the tools', if changed) incremented for this change?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "semantic-references/references-resolve",
+        "alias": "semantic-references.1",
+        "feature": "semantic-references",
+        "text": "Do all references resolve to their owning documents?",
+        "needs": [],
+        "measures": []
+      }
+    ],
+    "path": "method-change.md"
+  },
+  {
+    "id": "persistence",
+    "appliesWhen": [
+      "the work creates or changes migrations, seeds, repositories, or anything else that touches the database"
+    ],
+    "title": "Persistence",
+    "requires": [],
+    "stage": "backend",
+    "needs": [
+      "database"
+    ],
+    "inputs": [],
+    "outputs": [
+      {
+        "output": "Migrations",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "per schema change"
+      },
+      {
+        "output": "Seed data",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      },
+      {
+        "output": "Repositories",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "per persistence-owning capability"
+      },
+      {
+        "output": "Database report (`db-report.json`)",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "migrations",
+        "title": "Migrations",
+        "proves": "The last migration run succeeded, and its log holds that run only.",
+        "needs": "database"
+      },
+      {
+        "id": "seed-data",
+        "title": "Seed data",
+        "proves": "The last seed loaded rows for every entity of the Specs in the Goal's scope.",
+        "needs": "database"
+      },
+      {
+        "id": "schema",
+        "title": "Schema",
+        "proves": "Entities, their storage, and the database agree.",
+        "needs": null
+      },
+      {
+        "id": "storage-tested",
+        "title": "Storage tested",
+        "proves": "Each entity's writes are read back from the database itself by a passing test, not only from the API's answer.",
+        "needs": "database"
+      }
+    ],
+    "checks": [
+      {
+        "id": "engineering-for-reuse/features-implemented-once",
+        "alias": "engineering-for-reuse.1",
+        "feature": "engineering-for-reuse",
+        "text": "Is every Feature the application applies implemented once, with no second implementation (`mde verify`, Reuse row), and is every promise proven by a passing scenario tagged `@feature:<id>/<promise>` on each object that applies it (`mde verify`, Features row)?",
+        "needs": [],
+        "measures": [
+          "Reuse",
+          "Features"
+        ]
+      },
+      {
+        "id": "engineering-for-reuse/model-declared-once",
+        "alias": "engineering-for-reuse.2",
+        "feature": "engineering-for-reuse",
+        "text": "Is each entity's model declared once, and is duplicated code below the threshold the Reuse row reports?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "persistence-checks/db-report-present",
+        "alias": "persistence-checks.1",
+        "feature": "persistence-checks",
+        "text": "Is `db-report.json` present, healthy, and listing every table the migrations declare?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "persistence-integration-test/schema-dump-complete",
+        "alias": "persistence-integration-test.1",
+        "feature": "persistence-integration-test",
+        "text": "Does the schema dump show every touched entity's tables and columns, and does the down migration apply cleanly?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "runnable-migrate-seed/fresh-clone-starts",
+        "alias": "runnable-migrate-seed.1",
+        "feature": "runnable-migrate-seed",
+        "text": "From a fresh clone with no database, does `mde:start` create the database, migrate, seed, and start, with no manual step? Is the schema built by migrations rather than auto-synchronization?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "runnable-migrate-seed/migrations-run",
+        "alias": "runnable-migrate-seed.2",
+        "feature": "runnable-migrate-seed",
+        "text": "With a database: did the last migration run succeed, its log holding that run only (`mde verify`, Migrations)?",
+        "needs": [
+          "database"
+        ],
+        "measures": [
+          "Migrations"
+        ]
+      },
+      {
+        "id": "runnable-migrate-seed/seed-covers-entities",
+        "alias": "runnable-migrate-seed.3",
+        "feature": "runnable-migrate-seed",
+        "text": "With a database: did the last seed load rows for every entity of the Specs in the Goal's scope, as `evidence/built/seed.json` reports (`mde verify`, Seed data: every entity, not some)?",
+        "needs": [
+          "database"
+        ],
+        "measures": [
+          "Seed data"
+        ]
+      }
+    ],
+    "path": "app/persistence.md"
+  },
+  {
+    "id": "persistence-design",
+    "appliesWhen": [
+      "the work designs or changes how entities are stored: tables or collections, keys, constraints, relationships",
+      "the work designs audit history or concurrency control for the data"
+    ],
+    "title": "Persistence design",
+    "requires": [],
+    "stage": "design",
+    "needs": [
+      "database"
+    ],
+    "inputs": [],
+    "outputs": [
+      {
+        "output": "Storage",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "per persisted entity"
+      },
+      {
+        "output": "Physical data model diagram",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "with the first Storage View"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "physical-data-model",
+        "title": "Physical data model",
+        "proves": "The physical data model diagram is delivered once there is a design, and current if rendered from DOT.",
+        "needs": "database"
+      }
+    ],
+    "checks": [
+      {
+        "id": "design-in-catalog-terms/designs-use-catalog",
+        "alias": "design-in-catalog-terms.1",
+        "feature": "design-in-catalog-terms",
+        "text": "Does every capability design apply only known Features and design vocabulary, each to what it applies to, with only its options, and only where its `appliedIn` allows, on entities and operations the requirements declare, delegating only to real operations (`mde verify`, Design row)?",
+        "needs": [],
+        "measures": [
+          "Design"
+        ]
+      },
+      {
+        "id": "persistence-design-rules/database-matches-mapping",
+        "alias": "persistence-design-rules.1",
+        "feature": "persistence-design-rules",
+        "text": "Does the actual database agree with the mapping (a schema dump read against the Storage Views)?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "schema-from-entities/migration-per-entity",
+        "alias": "schema-from-entities.1",
+        "feature": "schema-from-entities",
+        "text": "For each touched entity, does a migration create its Storage View table with every declared column (`create table` and its columns against the entity's Storage View)?",
+        "needs": [],
+        "measures": []
+      }
+    ],
+    "path": "design/persistence-design.md"
+  },
+  {
+    "id": "prototype",
+    "appliesWhen": [
+      "the current Goal is a prototype under the Prototyping Strategy, shown on the MDE runtime"
+    ],
+    "title": "Prototype",
+    "requires": [],
+    "stage": "prototype",
+    "needs": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "output": "Use-case and data model diagrams",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "step 1"
+      },
+      {
+        "output": "Primary entities' data profiles and sample data",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "step 2: the prototype is usable from here"
+      },
+      {
+        "output": "Agreed page set and navigation",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "step 3, including when step 4 is omitted"
+      },
+      {
+        "output": "The pages, optional: a generated frontend calling the runtime's API",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "step 4, when the user wants them"
+      }
+    ],
+    "evidence": [],
+    "checks": [
+      {
+        "id": "business-requirements-abe/entity-placement",
+        "alias": "business-requirements-abe.1",
+        "feature": "business-requirements-abe",
+        "text": "Is every entity in an ABE folder under its home capability, with one Primary Entity per ABE (named after its folder), and is every entity name unique (`mde verify`, Entity placement row)?",
+        "needs": [],
+        "measures": [
+          "Entity placement"
+        ]
+      },
+      {
+        "id": "prototype/authorization-current",
+        "alias": "prototype.1",
+        "feature": "prototype",
+        "text": "For role-based behavior: is `specs/design/authorization.json` current with the use cases (`mde authorization --check`)?",
+        "needs": [],
+        "measures": []
+      }
+    ],
+    "path": "app/prototype.md"
+  },
+  {
+    "id": "run-app",
+    "appliesWhen": [
+      "the work produces or changes runnable code"
+    ],
+    "title": "Run the application",
+    "requires": [],
+    "stage": "skeleton",
+    "needs": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "output": "`build.log`",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      },
+      {
+        "output": "`test.log`",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "build",
+        "title": "Build",
+        "proves": "The application builds from its sources, every part.",
+        "needs": null
+      },
+      {
+        "id": "runtime-scripts",
+        "title": "Runtime scripts",
+        "proves": "Every runtime role is a real script, and destructive resets are kept apart.",
+        "needs": null
+      },
+      {
+        "id": "start-and-health",
+        "title": "Start and health",
+        "proves": "The last start succeeded, and health names the application and its dependencies.",
+        "needs": null
+      },
+      {
+        "id": "base-path",
+        "title": "Base path",
+        "proves": "The API base comes from configuration: no hard-coded /api, and no fixed CORS origin.",
+        "needs": null
+      }
+    ],
+    "checks": [
+      {
+        "id": "app-runtime-scripts/roles-declared",
+        "alias": "app-runtime-scripts.1",
+        "feature": "app-runtime-scripts",
+        "text": "Is every runtime role (`mde:install`, `mde:build`, `mde:test`, `mde:start`, `mde:health`) a real script, with no successful no-op and no destructive reset inside another role (`mde verify`, Runtime scripts row)?",
+        "needs": [],
+        "measures": [
+          "Runtime scripts"
+        ]
+      },
+      {
+        "id": "app-start-contract/one-command-start",
+        "alias": "app-start-contract.1",
+        "feature": "app-start-contract",
+        "text": "Does one invocation, from a fresh clone, bring up the application's own database and start all components, does health identify the application and its failing dependencies, does a second start stop the application's own previous run and start afresh, and is a port held by anything else reported and left alone?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "app-start-contract/start-logged",
+        "alias": "app-start-contract.2",
+        "feature": "app-start-contract",
+        "text": "Does `mde:start` leave its log, `evidence/tests/logs/start.log`, holding the latest start and ending with its exit, and `mde:health` its answer in `health.log`, naming the application and each dependency; did the last start succeed (`mde verify`, Start and health row)?",
+        "needs": [],
+        "measures": [
+          "Start and health"
+        ]
+      },
+      {
+        "id": "base-path-routing/base-from-config",
+        "alias": "base-path-routing.1",
+        "feature": "base-path-routing",
+        "text": "Does the API base come from configuration, with no hard-coded `/api` path and no fixed CORS origin in source (`mde verify`, Base path row)?",
+        "needs": [],
+        "measures": [
+          "Base path"
+        ]
+      },
+      {
+        "id": "build-and-regression/build-log-present",
+        "alias": "build-and-regression.1",
+        "feature": "build-and-regression",
+        "text": "Is `build.log` present, showing `mde:build` exit 0 (`mde verify`, Build row)?",
+        "needs": [],
+        "measures": [
+          "Build"
+        ]
+      },
+      {
+        "id": "build-and-regression/test-log-present",
+        "alias": "build-and-regression.2",
+        "feature": "build-and-regression",
+        "text": "Is `test.log` present, showing the whole `mde:test` suite ran and exited 0, not a subset and not a stale run (`mde verify`, Tests row)?",
+        "needs": [],
+        "measures": [
+          "Tests"
+        ]
+      }
+    ],
+    "path": "app/run-app.md"
+  },
+  {
+    "id": "server",
+    "appliesWhen": [
+      "the work creates or changes server-side source",
+      "the work changes configuration, the start or health contract, the operations map, logging, or how the application is served"
+    ],
+    "title": "Server",
+    "requires": [],
+    "stage": "backend",
+    "needs": [
+      "backend"
+    ],
+    "inputs": [],
+    "outputs": [
+      {
+        "output": "Capability slices",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "per implemented capability"
+      },
+      {
+        "output": "Runtime scripts",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      },
+      {
+        "output": "Configuration contract",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      },
+      {
+        "output": "Operations map",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "always"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "reuse",
+        "title": "Reuse",
+        "proves": "Code is not repeated: duplication stays under the threshold.",
+        "needs": null
+      },
+      {
+        "id": "slices-and-layers",
+        "title": "Slices and layers",
+        "proves": "Each capability has its own source folder, and data access is only in the data layer, never in a route.",
+        "needs": null
+      },
+      {
+        "id": "logging",
+        "title": "Logging",
+        "proves": "One shared logger, no console output elsewhere, and request lines carrying correlationId and principalId.",
+        "needs": null
+      },
+      {
+        "id": "live-slices",
+        "title": "Live slices",
+        "proves": "The API suite's captured server log shows the requests its scenarios made, each with a correlation id.",
+        "needs": null
+      },
+      {
+        "id": "stack-conformance",
+        "title": "Stack conformance",
+        "proves": "The application's dependencies are the declared stack's.",
+        "needs": null
+      },
+      {
+        "id": "no-placeholders",
+        "title": "No placeholders",
+        "proves": "No TODO, FIXME, or \"not implemented\" is left in shipped source.",
+        "needs": null
+      },
+      {
+        "id": "operation-markers",
+        "title": "Operation markers",
+        "proves": "With traceability on, every entity operation is marked at its route, service, and repository.",
+        "needs": null
+      }
+    ],
+    "checks": [
+      {
+        "id": "capability-vertical-slices/slices-live",
+        "alias": "capability-vertical-slices.1",
+        "feature": "capability-vertical-slices",
+        "text": "Is every slice live: mutations persist and the log shows the full route-to-query path (`mde verify`, Live slices row)?",
+        "needs": [],
+        "measures": [
+          "Live slices"
+        ]
+      },
+      {
+        "id": "capability-vertical-slices/layers-kept",
+        "alias": "capability-vertical-slices.2",
+        "feature": "capability-vertical-slices",
+        "text": "Does each capability have a source folder of its own holding its slice (a route, a service, and a repository, each real code naming the capability's entities, never a placeholder), with data access (the database driver, SQL) only in the data layer and never in a route (`mde verify`, Slices and layers row)?",
+        "needs": [],
+        "measures": [
+          "Slices and layers"
+        ]
+      },
+      {
+        "id": "engineering-for-reuse/features-implemented-once",
+        "alias": "engineering-for-reuse.1",
+        "feature": "engineering-for-reuse",
+        "text": "Is every Feature the application applies implemented once, with no second implementation (`mde verify`, Reuse row), and is every promise proven by a passing scenario tagged `@feature:<id>/<promise>` on each object that applies it (`mde verify`, Features row)?",
+        "needs": [],
+        "measures": [
+          "Reuse",
+          "Features"
+        ]
+      },
+      {
+        "id": "engineering-for-reuse/model-declared-once",
+        "alias": "engineering-for-reuse.2",
+        "feature": "engineering-for-reuse",
+        "text": "Is each entity's model declared once, and is duplicated code below the threshold the Reuse row reports?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "logging/one-logger",
+        "alias": "logging.1",
+        "feature": "logging",
+        "text": "Is there one shared logger, with no console output elsewhere in the backend, and does it write `correlationId` and `principalId` (`mde verify`, Logging row)?",
+        "needs": [],
+        "measures": [
+          "Logging"
+        ]
+      },
+      {
+        "id": "source-trace-header/operations-marked",
+        "alias": "source-trace-header.1",
+        "feature": "source-trace-header",
+        "text": "Does every implemented entity operation carry the `// MDE: <entity>.<op>` marker at its route, service, and repository (`mde verify`, Operation markers row)?",
+        "needs": [],
+        "measures": [
+          "Operation markers"
+        ]
+      },
+      {
+        "id": "stack-conformant-source/stack-dependencies",
+        "alias": "stack-conformant-source.1",
+        "feature": "stack-conformant-source",
+        "text": "Are the declared stack's choices (backend, database, frontend, UI, build) among the application's dependencies (`mde verify`, Stack conformance row)?",
+        "needs": [],
+        "measures": [
+          "Stack conformance"
+        ]
+      },
+      {
+        "id": "stack-conformant-source/no-placeholders",
+        "alias": "stack-conformant-source.2",
+        "feature": "stack-conformant-source",
+        "text": "Is no `TODO`, `FIXME`, or \"not implemented\" left in shipped source (`mde verify`, No placeholders row)?",
+        "needs": [],
+        "measures": [
+          "No placeholders"
+        ]
+      }
+    ],
+    "path": "app/server.md"
+  },
+  {
+    "id": "testing",
+    "appliesWhen": [
+      "the work implements or changes behavior: a use case, business rule, entity operation, page, or integration",
+      "the work writes or changes tests or the test harness"
+    ],
+    "title": "Testing",
+    "requires": [],
+    "stage": "testing",
+    "needs": [],
+    "inputs": [],
+    "outputs": [
+      {
+        "output": "Behavioral scenarios (use cases, business rules, acceptance)",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "per use case and business rule"
+      },
+      {
+        "output": "API tests",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "per capability with an API"
+      },
+      {
+        "output": "UI tests",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "per capability with a user interface"
+      },
+      {
+        "output": "Unit tests",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "for isolated internal behavior"
+      },
+      {
+        "output": "Test reports, logs, screenshots",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "per run"
+      },
+      {
+        "output": "Coverage",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "when coverage is measured"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "tests",
+        "title": "Tests",
+        "proves": "The application's own test suites pass (mde:test).",
+        "needs": null
+      },
+      {
+        "id": "api-tested",
+        "title": "API tested",
+        "proves": "Each of those is proven by passing tests through the API.",
+        "needs": null
+      },
+      {
+        "id": "backend-exercised",
+        "title": "Backend exercised",
+        "proves": "The share of the backend's code the tests ran.",
+        "needs": null
+      },
+      {
+        "id": "pages-tested",
+        "title": "Pages tested",
+        "proves": "Each page is used by passing end-to-end tests in the browser, with a screenshot after every step.",
+        "needs": "ui"
+      },
+      {
+        "id": "page-operations",
+        "title": "Operations tested through pages",
+        "proves": "Every operation of the Specs is performed through a page by a passing end-to-end test.",
+        "needs": "ui"
+      },
+      {
+        "id": "screenshots",
+        "title": "Screenshots",
+        "proves": "Every end-to-end scenario left a screenshot of each step, so its run can be read screen by screen.",
+        "needs": "ui"
+      },
+      {
+        "id": "frontend-exercised",
+        "title": "Frontend exercised",
+        "proves": "The share of the frontend's code the tests ran.",
+        "needs": "ui"
+      },
+      {
+        "id": "scenarios",
+        "title": "Scenarios",
+        "proves": "Every use case and business rule is proven by a scenario.",
+        "needs": null
+      },
+      {
+        "id": "suite",
+        "title": "Test suite",
+        "proves": "Scenario by scenario: what ran, and the result.",
+        "needs": "per-suite"
+      }
+    ],
+    "checks": [
+      {
+        "id": "captured-command-output/output-captured",
+        "alias": "captured-command-output.1",
+        "feature": "captured-command-output",
+        "text": "Is every executable check's output captured as UTF-8 under `evidence/tests/logs/`, and does each suite driving the application capture its server log, showing the requests its scenarios claim?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "coverage-threshold/coverage-real",
+        "alias": "coverage-threshold.1",
+        "feature": "coverage-threshold",
+        "text": "Do reports come from the current run, with failures and not-executed scenarios visible? Is coverage instrumented for real, with its threshold explicitly adopted and unmeasured parts named?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "end-to-end-tests/page-operations-tested",
+        "alias": "end-to-end-tests.1",
+        "feature": "end-to-end-tests",
+        "text": "Is every page operation performed by a passing browser scenario (`mde verify`, Operations tested through pages: every operation, not some), and every page of the inventory used by one (Pages tested)?",
+        "needs": [],
+        "measures": [
+          "Operations tested through pages"
+        ]
+      },
+      {
+        "id": "end-to-end-tests/screenshots-left",
+        "alias": "end-to-end-tests.2",
+        "feature": "end-to-end-tests",
+        "text": "Did every browser scenario leave its screenshots (`mde verify`, Screenshots: one set per scenario)?",
+        "needs": [],
+        "measures": [
+          "Screenshots"
+        ]
+      },
+      {
+        "id": "end-to-end-tests/use-cases-walked",
+        "alias": "end-to-end-tests.3",
+        "feature": "end-to-end-tests",
+        "text": "Does every use case with a screen have a scenario walking its main flow in a browser, with screenshots after each step and at failure?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "end-to-end-tests/e2e-report-generated",
+        "alias": "end-to-end-tests.4",
+        "feature": "end-to-end-tests",
+        "text": "Is `evidence/tests/e2e.md` generated by the run, each step with its screenshot, and is the run instrumented for coverage?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "gherkin-traceability/scenarios-traced",
+        "alias": "gherkin-traceability.1",
+        "feature": "gherkin-traceability",
+        "text": "Are behavioral scenarios readable and traced: each tagged with the spec it proves, and every entity operation with an endpoint also covered by a scenario?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "readable-test-data/rules-proven",
+        "alias": "readable-test-data.1",
+        "feature": "readable-test-data",
+        "text": "Does every business rule have scenarios tagged `@rule:<id>`, where it holds and where it is refused, and every use case and entity operation a scenario (`mde verify`, Tests row)?",
+        "needs": [],
+        "measures": [
+          "Tests"
+        ]
+      },
+      {
+        "id": "readable-test-data/terms-verified",
+        "alias": "readable-test-data.2",
+        "feature": "readable-test-data",
+        "text": "Does every promise of every Feature the application applies have a passing scenario tagged `@feature:<id>/<promise>` on each object that applies it (`mde verify`, Features row)?",
+        "needs": [],
+        "measures": [
+          "Features"
+        ]
+      },
+      {
+        "id": "readable-test-data/storage-checked",
+        "alias": "readable-test-data.3",
+        "feature": "readable-test-data",
+        "text": "With a database: is every entity's storage checked against the migrated database by a passing scenario (`mde verify`, Storage tested row: every entity, not some)?",
+        "needs": [
+          "database"
+        ],
+        "measures": [
+          "Storage tested"
+        ]
+      },
+      {
+        "id": "required-operation-ui-coverage/rendered-operations-performed",
+        "alias": "required-operation-ui-coverage.1",
+        "feature": "required-operation-ui-coverage",
+        "text": "Does every role-permitted operation a page renders have a UI scenario that performs it in a real browser and asserts an observable outcome, with a screenshot from the run?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "static-vs-executable-classification/unexecuted-visible",
+        "alias": "static-vs-executable-classification.1",
+        "feature": "static-vs-executable-classification",
+        "text": "Are unexecuted and blocked checks visible, never shown as passed?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "testing-running-the-tests/commands-recorded",
+        "alias": "testing-running-the-tests.1",
+        "feature": "testing-running-the-tests",
+        "text": "Are test commands recorded and `mde:test` declared, with scoped tests run for the verification activity and the full required suite before guided release?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "ui-screenshots/screenshots-captured",
+        "alias": "ui-screenshots.1",
+        "feature": "ui-screenshots",
+        "text": "Does every UI scenario have a screenshot from the actual run, pass or fail, with missing captures reported?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "use-case-execution-report/reports-current",
+        "alias": "use-case-execution-report.1",
+        "feature": "use-case-execution-report",
+        "text": "Do reports come from the current run, with failures and not-executed scenarios visible?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "use-case-execution-report/not-run-shown",
+        "alias": "use-case-execution-report.2",
+        "feature": "use-case-execution-report",
+        "text": "Does every test report show not-run and skipped scenarios as such, and does every scenario name the spec ids it proves?",
+        "needs": [],
+        "measures": []
+      }
+    ],
+    "path": "app/testing.md"
+  },
+  {
+    "id": "ui-design",
+    "appliesWhen": [
+      "the work generates or changes the application's pages, their composition, or navigation",
+      "the work sets the application's UI conventions, or how the required operations are covered by the UI"
+    ],
+    "title": "UI design",
+    "requires": [],
+    "stage": "design",
+    "needs": [
+      "ui"
+    ],
+    "inputs": [],
+    "outputs": [
+      {
+        "output": "The pages",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "per ABE, use case, and role"
+      },
+      {
+        "output": "UI conventions that differ from the Method's",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "when one differs"
+      },
+      {
+        "output": "A decision for one page",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "when the conventions do not make it"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "page-set",
+        "title": "Page set",
+        "proves": "The pages the application should have are recorded in the Specs, as what the pages built are measured against.",
+        "needs": "ui"
+      },
+      {
+        "id": "navigation-diagram",
+        "title": "Navigation diagram",
+        "proves": "The navigation diagram is delivered, and current if rendered from DOT.",
+        "needs": "ui"
+      }
+    ],
+    "checks": [
+      {
+        "id": "ui-design-navigation-diagram/navigation-drawn",
+        "alias": "ui-design-navigation-diagram.1",
+        "feature": "ui-design-navigation-diagram",
+        "text": "With a user interface, is the navigation diagram delivered, in `specs/design/diagrams/` (`mde verify`, Navigation diagram row)?",
+        "needs": [
+          "ui"
+        ],
+        "measures": [
+          "Navigation diagram"
+        ]
+      },
+      {
+        "id": "ui-design-operation-coverage/use-cases-proven",
+        "alias": "ui-design-operation-coverage.1",
+        "feature": "ui-design-operation-coverage",
+        "text": "Is every use case, and every operation it invokes, proven by a test scenario tagged with the use case or the `entity.op` (`mde verify`, Scenarios row)?",
+        "needs": [],
+        "measures": [
+          "Scenarios"
+        ]
+      }
+    ],
+    "path": "design/ui-design.md"
+  },
+  {
+    "id": "web-ui",
+    "appliesWhen": [
+      "the work builds or changes pages, the application shell, navigation, or the login"
+    ],
+    "title": "Web UI",
+    "requires": [],
+    "stage": "frontend",
+    "needs": [
+      "ui"
+    ],
+    "inputs": [],
+    "outputs": [
+      {
+        "output": "Page",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "per page"
+      },
+      {
+        "output": "Operation surface",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "per role-permitted operation"
+      },
+      {
+        "output": "Page screenshot",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "per page"
+      },
+      {
+        "output": "Login page and route guard",
+        "resolves": null,
+        "path": "",
+        "perEach": "",
+        "when": "when the application has roles or users"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "pages-built",
+        "title": "Pages built",
+        "proves": "The pages the application reports it generated (its page inventory) exist and read the real API.",
+        "needs": "ui"
+      },
+      {
+        "id": "specs-on-pages",
+        "title": "Specs on pages",
+        "proves": "The Specs' entities, operations and use cases are on the pages built.",
+        "needs": "ui"
+      },
+      {
+        "id": "server-source",
+        "title": "Server source",
+        "proves": "The pages get their data where .env says (SERVER_SOURCE), and, with the application's own backend, never from the MDE runtime.",
+        "needs": "ui"
+      }
+    ],
+    "checks": [
+      {
+        "id": "end-to-end-tests/page-operations-tested",
+        "alias": "end-to-end-tests.1",
+        "feature": "end-to-end-tests",
+        "text": "Is every page operation performed by a passing browser scenario (`mde verify`, Operations tested through pages: every operation, not some), and every page of the inventory used by one (Pages tested)?",
+        "needs": [],
+        "measures": [
+          "Operations tested through pages"
+        ]
+      },
+      {
+        "id": "end-to-end-tests/screenshots-left",
+        "alias": "end-to-end-tests.2",
+        "feature": "end-to-end-tests",
+        "text": "Did every browser scenario leave its screenshots (`mde verify`, Screenshots: one set per scenario)?",
+        "needs": [],
+        "measures": [
+          "Screenshots"
+        ]
+      },
+      {
+        "id": "end-to-end-tests/use-cases-walked",
+        "alias": "end-to-end-tests.3",
+        "feature": "end-to-end-tests",
+        "text": "Does every use case with a screen have a scenario walking its main flow in a browser, with screenshots after each step and at failure?",
+        "needs": [],
+        "measures": []
+      },
+      {
+        "id": "end-to-end-tests/e2e-report-generated",
+        "alias": "end-to-end-tests.4",
+        "feature": "end-to-end-tests",
+        "text": "Is `evidence/tests/e2e.md` generated by the run, each step with its screenshot, and is the run instrumented for coverage?",
+        "needs": [],
+        "measures": []
+      }
+    ],
+    "path": "app/web-ui.md"
+  }
+]

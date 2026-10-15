@@ -1,0 +1,33 @@
+{
+  "$schema_note": "Legacy canonical specs/ folders used by Workbench list-block validation to warn about missing or mismatched types. Type definitions and display metadata live in the flat metamodel Markdown files; index.md provides navigation.",
+  "specsRoot": "specs",
+  "sections": [
+    {
+      "label": "Requirements",
+      "path": "specs/requirements",
+      "domainFile": {"label": "Domain", "path": "specs/requirements/domain.md", "type": "domain"},
+      "glossaryFile": {"label": "Glossary", "path": "specs/requirements/glossary.md", "type": "glossary"},
+      "folders": [
+        {"label": "Capabilities", "path": "specs/requirements/capabilities", "type": "capability"},
+        {"label": "Entities",     "path": "specs/requirements/entities",     "type": "entity"},
+        {"label": "Use Cases",    "path": "specs/requirements/use-cases",    "type": "use-case"},
+        {"label": "Workflows",    "path": "specs/requirements/workflows",    "type": "workflow"},
+        {"label": "Rules",        "path": "specs/requirements/rules",        "type": "business-rule"},
+        {"label": "Roles",        "path": "specs/requirements/roles",        "type": "role"}
+      ]
+    },
+    {
+      "label": "Architecture",
+      "path": "specs/architecture",
+      "type": "architecture"
+    },
+    {
+      "label": "Design",
+      "path": "specs/design",
+      "folders": [
+        {"label": "API",          "path": "specs/design/api",          "type": "api-contract"},
+        {"label": "Integrations", "path": "specs/design/integrations", "type": "integration"}
+      ]
+    }
+  ]
+}

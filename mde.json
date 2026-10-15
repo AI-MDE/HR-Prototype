@@ -1,0 +1,11 @@
+{
+  "type": "mde",
+  "specs": "./specs",
+  "app": "./app",
+  "work": "./work",
+  "evidence": "./evidence",
+  "method": "./method",
+  "mde": {
+    "createdWith": "0.3.175"
+  }
+}
